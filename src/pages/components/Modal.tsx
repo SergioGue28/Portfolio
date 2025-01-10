@@ -1,15 +1,25 @@
-import React from "react";
-import  Styles  from "../../styles/components/UpdateInformation.module.css";
+import { useState } from "react";
 
-const Modal: React.FC = () => {
-
-    return (
-    <div className={Styles.modalBackdrop}>
-    <div className={Styles.modal}>
-    
-    </div>
-  </div>
-);
+interface Modal {
+  photo: string;
 }
 
-export default Modal;
+export const useHeaderState = ({ photo }: Modal) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState(photo || "/img/FOTO.jpg");
+
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
+  const handleUpdatePhoto = (formData: { photo: string }) => {
+    setProfilePhoto(formData.photo);
+  };
+
+  return {
+    isModalOpen,
+    profilePhoto,
+    handleOpenModal,
+    handleCloseModal,
+    handleUpdatePhoto,
+  };
+};

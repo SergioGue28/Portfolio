@@ -3,27 +3,23 @@ import Styles from "../../styles/components/Header.module.css";
 import classNames from 'classnames';
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import FormPhoto from "./componentPhoto/FormPhoto";
+import {useHeaderState} from "./Modal";
 
 interface Props {
   photo: string,
-  name: string,
-  description: string
 }
 
 const Header: React.FC <Props> = ({photo}) => {
 
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [profilePhoto, setProfilePhoto] = useState(photo || "/img/FOTO.jpg");
+  const {
+    isModalOpen,
+    profilePhoto,
+    handleOpenModal,
+    handleCloseModal,
+    handleUpdatePhoto,
+  } = useHeaderState({ photo });
 
-  const handleOpenModal = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
-
-  const handleUpdatePhoto = (formData: { photo: string }) => {
-    setProfilePhoto(formData.photo); // Actualiza la foto de perfil
-  };
-  
   return (
     
     <header className={Styles.header}>
@@ -93,24 +89,13 @@ const Header: React.FC <Props> = ({photo}) => {
         </div>
 
         <div className={classNames(Styles.contentHeader, Styles.containerProfile)}>
-        <div className={Styles.tooltipContainer}>
-          <Image
-            src={profilePhoto}
-            alt="Foto de perfil"
-            width={30}
-            height={30}
-            className={Styles.profilePicture}
-            onClick={handleOpenModal}
-          />
-          <div className={Styles.tooltip}>Editar foto</div>
-        </div>
+        
         <div className={Styles.tooltipContainer}>
           <button className={Styles.btnProfile} onClick={handleOpenModal}>Sergio Guerra</button>
           <div className={Styles.tooltip}>Editar nombre</div>
         </div>
       </div>
 
-      <FormPhoto isOpen={isModalOpen} onClose={handleCloseModal} onAddUser={handleUpdatePhoto} />
       </section>
          
     </header>

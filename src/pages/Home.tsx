@@ -3,27 +3,19 @@ import Link from 'next/link';
 import Styles from '../styles/Home.module.css';
 import Image from "next/image";
 import classNames from 'classnames';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import FormPhoto from "../pages/components/componentPhoto/FormPhoto";
-
+import {useHeaderState} from "../pages/components/Modal";
 interface Props {
-  photo?: string; // Hacerlo opcional si no siempre se proporciona
+  photo: string; // Hacerlo opcional si no siempre se proporciona
 }
 
 const Home: React.FC <Props> = ({photo}) => {
 
-  const [profilePhoto, setProfilePhoto] = useState(photo || "/img/FOTO.jpg");
-  
-  useEffect(() => {
-    if (photo) {
-      setProfilePhoto(photo);
-    }
-  }, [photo]);
+  const {
+      profilePhoto,
+      handleUpdatePhoto,
+    } = useHeaderState({ photo });
 
-  const handleUpdatePhoto = (formData: { photo: string }) => {
-    setProfilePhoto(formData.photo); // Actualiza la foto de perfil
-  };
     return (
       <nav className={Styles.nav}>
 
@@ -33,14 +25,17 @@ const Home: React.FC <Props> = ({photo}) => {
             <Image
               src={profilePhoto}
               alt="Foto de perfil"
-              width={600}
-              height={600}
+              width={450}
+              height={450}
               className={classNames(Styles.profilePicture, Styles.fadeIn)}
             /> 
             </div>
             
+            
             <div className={classNames(Styles.text, Styles.fadeIn)}>
-              <span className={Styles.textMayus}>Hi, this's<span className={Styles.textColor}> Sergio Andres Guerra Corrales</span> </span>
+              <span className={Styles.textMayus}>Hi, this's
+                <span className={Styles.textColor}>Sergio Andres Guerra Corrales <br />Backend Developer</span>  
+                </span>
               <br/>
               <span className={Styles.contex}>
               programmer with 9 months of experience in 
@@ -80,8 +75,8 @@ const Home: React.FC <Props> = ({photo}) => {
               <Image
                 src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
                 alt="Settings Icon"
-                width={600}
-                height={600}
+                width={450}
+                height={450}
                 className={classNames( Styles.imgcard, Styles.imgcardProject)}
               />
               <div className={Styles.textOverlay}>
@@ -94,8 +89,8 @@ const Home: React.FC <Props> = ({photo}) => {
             <Image
               src="/img/liam-truong-htpU_wGEcW0-unsplash.JPG"
               alt="Certificates"
-              width={600}
-              height={600}
+              width={450}
+              height={450}
               className={classNames( Styles.imgcard, Styles.imgcardCertificate)}
             />
               <div className={Styles.textOverlay}>
@@ -105,7 +100,7 @@ const Home: React.FC <Props> = ({photo}) => {
           <FormPhoto
             onAddUser={handleUpdatePhoto}
             isOpen={false}
-            onClose={() => console.log('Form closed')}
+            onClose={()=> {}}
             />
 
         </section>
