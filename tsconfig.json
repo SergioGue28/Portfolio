@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+, "src/pages/TicketInformation.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,58 @@
+.containerFooter{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #151515;
+}
+.containerElement{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+}
+.nameFooter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2rem;
+    color: #FFFFFF; 
+}
+.ContainerSocial{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem; 
+    font-weight: bold;
+}
+.buttonFooter{
+    padding: 1rem;
+    color: #FFFFFF;
+}
+.social{
+    padding: 1rem;
+    background-color: blue;
+    border-radius: 50%;
+
+}
+.Containerline {
+    display: flex; 
+    justify-content: center; 
+    width: 100%;
+    padding: 20px 0; 
+}
+
+.line {
+    border: none; 
+    height: 1px; 
+    background-color: #76AEFF; 
+    margin: 0; 
+    width: 80%; 
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    padding: 1rem;
+}

@@ -1,0 +1,163 @@
+
+
+.header {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    box-shadow: rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+
+  /* Contiene todos los contenedores del header */
+  .containerHeader{
+    display: flex;
+    width: 100%;
+    height: 76px;
+    padding: 7.6px;
+    background-color: #031A29;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Son los tres contenedores que tiene el header */
+.contentHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 33%;
+  min-width: 20%;
+  height: 100%;
+  padding: 0 20px; 
+  background-color: #031A29;
+}
+.containerSearch{
+  gap: 10px;
+  
+}
+  /* Es el contenido que tiene el contenedor central containerSearch */
+.buttonHeader{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: #031A29;
+  color: #FFFFFF;
+  border: none;
+  transition: transform 0.5s ease;
+  font-size: 1rem;
+}
+
+.buttonHeader:hover{
+  box-shadow: inset 0px -3px 0px 0px #66E55B;
+  transform: scale(1.1);
+}
+
+.chat{
+  transition: transform 0.5s ease;
+}
+.chat:hover{
+  transform: scale(1.1);
+}
+
+.containerSocial{
+   justify-content: flex-start;
+}
+
+.containerProfile{
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.profilePicture{
+  border: solid 2px #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+.profilePicture:hover{
+  transform: scale(1.1);
+}
+
+.btnProfile{
+  color: #FFFFFF;
+  background-color: #031A29;
+  box-sizing: border-box;
+  border: none;
+  transition: transform 0.5s ease;
+  font-size: 1rem;
+}
+.btnProfile:hover{
+  transform: scale(1.1);
+}
+
+/* Contenedor principal */
+.tooltipContainer {
+  position: relative; /* Necesario para posicionar el tooltip */
+  display: inline-block; /* Permite ajustar al tamaño del contenido */
+  cursor: pointer; /* Cambia el cursor para indicar interactividad */
+}
+
+/* Tooltip oculto inicialmente */
+.tooltip {
+  visibility: hidden; /* Inicialmente oculto */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+  text-align: center;
+  padding: 8px; /* Espaciado interno */
+  border-radius: 4px; /* Bordes redondeados */
+  position: absolute;
+  top: 150%; /* Aparece debajo del contenedor */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translateX(-50%); /* Ajusta el centrado */
+  white-space: nowrap; /* Evita que el texto se quiebre */
+  font-size: 0.9rem; /* Tamaño del texto */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  opacity: 0; /* Oculto por defecto */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave */
+}
+
+/* Flecha del tooltip */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%; /* Flecha encima del tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
+}
+
+/* Mostrar el tooltip al hacer hover */
+.tooltipContainer:hover .tooltip {
+  visibility: visible; /* Visible cuando se hace hover */
+  opacity: 1; /* Transición suave */
+}
+
+@media
+(width >= 700px) and 
+(width <= 1000px){
+  
+  .buttonHeader{
+    font-size: 1rem;
+  }
+}
+
+@media
+(width >= 400px) and
+(width <= 700px){
+  .containerHeader{
+    height: 60px;
+    padding: 0 1rem;
+  }
+  .containerSearch{
+    display: none;
+  }
+  .btnProfile{
+    font-size: 14px;
+  }
+
+  .contentHeader{
+    max-width: 50%;
+    padding: 0 ; 
+  }
+}
