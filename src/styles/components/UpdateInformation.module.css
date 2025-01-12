@@ -93,7 +93,7 @@
 
 /* Área de texto */
 .textarea {
-  height: 80px;
+  height: 180px;
   resize: none;
 }
 
@@ -102,13 +102,6 @@
   font-size: 0.85rem;
   text-align: right;
   color: #ccc;
-}
-
-/* Botón de formulario */
-.formGroupButton {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1rem;
 }
 
 .button {
@@ -145,7 +138,10 @@
     padding: 0.5rem;
   }
   .textarea{
-    height: 120px;
+    height: 320px;
+    white-space: pre-wrap; /* Preserva saltos de línea y ajusta texto */
+    word-wrap: break-word; /* Ajusta palabras largas */
+    overflow-wrap: break-word;
   }
 }
 
@@ -162,7 +158,7 @@
     color: #fff;
   }
   .textarea{
-    height: 120px;
+    height: 370px;
   }
 .column {
   display: flex;

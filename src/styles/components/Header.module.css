@@ -12,8 +12,8 @@
   .containerHeader{
     display: flex;
     width: 100%;
-    height: 76px;
-    padding: 7.6px;
+    height: 90px;
+    padding: 0;
     background-color: #031A29;
     justify-content: center;
     gap: 1rem;
@@ -43,13 +43,12 @@
   background-color: #031A29;
   color: #FFFFFF;
   border: none;
-  transition: transform 0.5s ease;
   font-size: 1rem;
+  transition: transform 0.5s ease;
 }
 
 .buttonHeader:hover{
   box-shadow: inset 0px -3px 0px 0px #66E55B;
-  transform: scale(1.1);
 }
 
 .chat{
@@ -69,7 +68,6 @@
 }
 
 .profilePicture{
-  border: solid 2px #FFFFFF;
   border-radius: 50%;
   transition: transform 0.5s ease;
 }

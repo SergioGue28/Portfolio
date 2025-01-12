@@ -3,22 +3,8 @@ import Styles from "../../styles/components/Header.module.css";
 import classNames from 'classnames';
 import Image from "next/image";
 import Link from "next/link";
-import FormPhoto from "./componentPhoto/FormPhoto";
-import {useHeaderState} from "./Modal";
 
-interface Props {
-  photo: string,
-}
-
-const Header: React.FC <Props> = ({photo}) => {
-
-  const {
-    isModalOpen,
-    profilePhoto,
-    handleOpenModal,
-    handleCloseModal,
-    handleUpdatePhoto,
-  } = useHeaderState({ photo });
+const Header: React.FC = () => {
 
   return (
     
@@ -91,9 +77,16 @@ const Header: React.FC <Props> = ({photo}) => {
         <div className={classNames(Styles.contentHeader, Styles.containerProfile)}>
         
         <div className={Styles.tooltipContainer}>
-          <button className={Styles.btnProfile} onClick={handleOpenModal}>Sergio Guerra</button>
+          <button className={Styles.btnProfile}>Sergio Guerra</button>
           <div className={Styles.tooltip}>Editar nombre</div>
         </div>
+        <Image
+            src="/img/menu.png"
+            alt="Foto de perfil"
+            width={30}
+            height={30}
+            className={Styles.profilePicture}
+          />
       </div>
 
       </section>
