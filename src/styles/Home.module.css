@@ -4,7 +4,6 @@
     padding: 0;
     margin: 0;
     width: 100%;
-
 }
 
 .home{
@@ -20,7 +19,6 @@
     display: flex;
     border: solid 3px #FFFFFF;
     border-radius: 50%;
-    
 }
 
 .text, .photo{
@@ -35,15 +33,18 @@
     color: #FFFFFF;
     justify-content: center;
     flex-direction: column; 
+    width: 55%;
 }
 
 .photo{
-    justify-content: flex-end;
+    justify-content: center;
     padding: 1rem 0;
+    width: 45%;
+    
 }
 
 .contex{
-    padding: 20px 60px 20px 20px;
+    padding: 20px;
     justify-content: center;
     font-size: 15px;
     white-space: pre-wrap; /* Preserva saltos de línea y ajusta texto */
@@ -51,7 +52,22 @@
     overflow-wrap: break-word;
     overflow: auto;
     max-width: 750px;
-     box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.contexTitle{
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.textTitleOcupation{
+  font-size: 35px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.textTitleOcupationColor{
+  color: #66E55B;
 }
 
 /* Parte del titulo de las card */
@@ -102,7 +118,6 @@
     border-radius: 10px;
     transition: transform 0.5s ease;
     filter: blur(2px);
-    -webkit-filter: blur(2px);
 }
 .imgcard:hover {
   transform: scale(1.1);
@@ -146,10 +161,11 @@
   .photo, .text{
     justify-content: center;
     align-items: center;
+    width: 100%;
   }
   .profilePicture{
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
   }
   .containerCard{
     flex-direction: column;
@@ -172,8 +188,14 @@
     font-size: 1rem;
   }
   .contex{
-    padding : 10px 105px 10px 105px;
+    padding : 20px ;
     max-width: 729px;
+ }
+ .contexTitle{
+  padding : 20px ;  
+ }
+ .textTitleOcupation{
+  font-size: 34px;
  }
 }
 
@@ -192,6 +214,7 @@
   .photo, .text{
     justify-content: center;
     align-items: center;
+    width: 100%;
   }
   .profilePicture{
     width: 250px;
@@ -229,8 +252,14 @@
     padding: 0 50px;
   }
   .contex{
-    padding: 20px 50px;
+    padding: 20px;
     font-size: 11px;
+  }
+  .contexTitle{
+    padding: 20px;
+  }
+  .textTitleOcupation{
+    font-size: 19px;
   }
 
 }

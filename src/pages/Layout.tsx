@@ -12,7 +12,7 @@ interface RootLayoutProps {
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <div className={`${montserrat.className} antialiased`}>
-      <Header photo={""} />
+      <Header/>
       <Nav />
       <main>
         {children}

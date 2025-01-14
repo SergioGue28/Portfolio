@@ -6,6 +6,7 @@ import FormPhoto from "../pages/components/componentPhoto/FormPhoto";
 import { useHeaderState } from "../pages/components/Modal";
 import FormDescription from './components/componentPhoto/FormDescription';
 
+
 interface Props {
   photo: string;
 }
@@ -24,9 +25,6 @@ const Home: React.FC<Props> = ({ photo }) => {
     description
   } = useHeaderState({ photo });
 
-
-  
-
   return (
     <nav className={Styles.nav}>
       <section className={classNames(Styles.home, Styles.fadeIn)}>
@@ -42,13 +40,19 @@ const Home: React.FC<Props> = ({ photo }) => {
         </div>
 
         <div className={classNames(Styles.text, Styles.fadeIn)}>
-          
-          <span
+          <div className={Styles.contexTitle}>
+            <span className={Styles.textTitleOcupation}>Hi this's</span>
+            <span className={classNames(Styles.textTitleOcupation,Styles.textTitleOcupationColor)}> Sergio Andres Guerra Corrales</span><br />
+            <span className={classNames(Styles.textTitleOcupation,Styles.textTitleOcupationColor)}>Backend Developer</span>
+          </div>
+
+          <div
             className={Styles.contex}
-            onClick={handleOpenDescriptionModal} 
-          >
+            onClick={handleOpenDescriptionModal}
+            >
             {description}
-          </span>
+          </div>
+            
         </div>
       </section>
 
