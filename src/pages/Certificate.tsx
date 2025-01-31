@@ -1,40 +1,43 @@
+import React, { useState } from "react";
 import Styles from "../styles/Certificate.module.css";
 import Tittle from "./components/Title";
 import CertificateCard from "./components/CertificateCard";
-import UpdateInformation from "./components/UpdateInformation";
-import { useState } from "react";
+import CertificateForm from "./components/Forms/CertificateForm";
 
 const Certificate: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [certificates, setCertificates] = useState([
+    { name: "Certificate 1", imageUrl: "/img/diploma-java-spring-1.png" },
+    { name: "Certificate 2", imageUrl: "/img/diploma-java-spring-1.png" }
+  ]);
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
 
-  const certificates = [
-    { name: "Certificate 1", imageUrl: "/images/certificate1.jpg" },
-    { name: "Certificate 2", imageUrl: "/images/certificate2.jpg" },
-    { name: "Certificate 3", imageUrl: "/images/certificate3.jpg" },
-  ];
+  const handleAddCertificate = (newCertificate: { name: string; imageUrl: string }) => {
+    setCertificates([...certificates, newCertificate]);
+  };
 
   return (
     <nav className={Styles.nav}>
-      <Tittle text="Certificate" />
-      <section className={Styles.certificate}>
-        <div className={Styles.containerCertificate}>
-          {certificates.map((cert, index) => (
-            <CertificateCard key={index} name={cert.name} imageUrl={cert.imageUrl} />
-          ))}
-        </div>
+      <Tittle text="Certificados" />
+    
+      <div className={Styles.containerCertificate}>
+        {certificates.map((cert, index) => (
+          <CertificateCard key={index} name={cert.name} imageUrl={cert.imageUrl} />
+        ))}
+      </div>
 
-        <div className={Styles.containerButtonAggCard}>
-          <div>
-            <button className={Styles.buttonAggCard} onClick={handleOpenModal}>
-              Agg Certificate
-            </button>
-            <UpdateInformation isOpen={isModalOpen} onClose={handleCloseModal} />
-          </div>
-        </div>
-      </section>
+      <div className={Styles.containerButtonAggCard}>
+        <button className={Styles.buttonAggCard} onClick={handleOpenModal}>
+          Agg Certificate
+        </button>
+        <CertificateForm
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onAddCertificate={handleAddCertificate}
+        />
+      </div>
     </nav>
   );
 };

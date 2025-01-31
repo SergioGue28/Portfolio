@@ -1,58 +1,58 @@
-import Link from 'next/link';
-import Styles from '../styles/Home.module.css';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Styles from "../styles/Home.module.css";
 import Image from "next/image";
-import classNames from 'classnames';
-import FormPhoto from "../pages/components/componentPhoto/FormPhoto";
-import { useHeaderState } from "../pages/components/Modal";
-import FormDescription from './components/componentPhoto/FormDescription';
+import classNames from "classnames";
 
-
-interface Props {
+interface PortfolioData {
+  fullName: string;
+  position: string;
+  description: string;
   photo: string;
 }
 
-const Home: React.FC<Props> = ({ photo }) => {
-  const {
-    isModalOpen,
-    profilePhoto,
-    handleOpenModal,
-    handleCloseModal,
-    handleUpdatePhoto,
-    handleCloseDescriptionModal,
-    handleOpenDescriptionModal,
-    isDescriptionModalOpen,
-    handleUpdateDescription,
-    description
-  } = useHeaderState({ photo });
+const Home: React.FC = () => {
+  const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/portfolio") 
+      .then((response) => response.json())
+      .then((data) => setPortfolio(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   return (
     <nav className={Styles.nav}>
       <section className={classNames(Styles.home, Styles.fadeIn)}>
         <div className={classNames(Styles.photo, Styles.fadeIn)}>
-          <Image
-            src={profilePhoto}
-            alt="Foto de perfil"
-            width={450}
-            height={450}
-            className={classNames(Styles.profilePicture, Styles.fadeIn)}
-            onClick={handleOpenModal}
-          />
+          {portfolio?.photo ? (
+            <Image
+              src={portfolio.photo} 
+              alt="Foto de perfil"
+              width={450}
+              height={500}
+              className={classNames(Styles.profilePicture, Styles.fadeIn)}
+            />
+          ) : (
+            <p>Cargando imagen...</p>
+          )}
         </div>
 
         <div className={classNames(Styles.text, Styles.fadeIn)}>
           <div className={Styles.contexTitle}>
-            <span className={Styles.textTitleOcupation}>Hi this's</span>
-            <span className={classNames(Styles.textTitleOcupation,Styles.textTitleOcupationColor)}> Sergio Andres Guerra Corrales</span><br />
-            <span className={classNames(Styles.textTitleOcupation,Styles.textTitleOcupationColor)}>Backend Developer</span>
+            <span className={Styles.textTitleOcupationColor}>Hi this's </span>
+            <span className={Styles.textTitleOcupationName}>
+              {portfolio?.fullName || "Cargando..."}
+            </span>
+            <br />
+            <span className={Styles.textTitleOcupationName}>
+              {portfolio?.position || "Cargando..."}
+            </span>
           </div>
 
-          <div
-            className={Styles.contex}
-            onClick={handleOpenDescriptionModal}
-            >
-            {description}
+          <div className={Styles.contex}>
+            {portfolio?.description || "Cargando descripción..."}
           </div>
-            
         </div>
       </section>
 
@@ -60,8 +60,8 @@ const Home: React.FC<Props> = ({ photo }) => {
         <div className={Styles.textTitle}>ABOUT</div>
       </div>
 
-      <section className={classNames(Styles.containerCard, Styles.fadeIn)}>
-        <Link href="/Project" className={classNames(Styles.card, Styles.cardProject, Styles.fadeIn)}>
+      <section className={Styles.containerCard}>
+        <Link href="/Project" className={classNames(Styles.card, Styles.cardProject, Styles.projectFadeIn)}>
           <Image
             src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
             alt="Settings Icon"
@@ -74,7 +74,7 @@ const Home: React.FC<Props> = ({ photo }) => {
           </div>
         </Link>
 
-        <Link href="/Certificate" className={classNames(Styles.card, Styles.cardCertificate, Styles.fadeIn)}>
+        <Link href="/Certificate" className={classNames(Styles.card, Styles.cardCertificate, Styles.certificateFadeIn)}>
           <Image
             src="/img/liam-truong-htpU_wGEcW0-unsplash.JPG"
             alt="Certificates"
@@ -87,18 +87,6 @@ const Home: React.FC<Props> = ({ photo }) => {
           </div>
         </Link>
       </section>
-
-      <FormPhoto
-        onAddUser={handleUpdatePhoto}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
-
-      <FormDescription
-        isOpen={isDescriptionModalOpen}
-        onClose={handleCloseDescriptionModal}
-        onAddDescription={handleUpdateDescription}
-      />
     </nav>
   );
 };

@@ -14,8 +14,8 @@ const CertificateCard: React.FC<CertificateCardProps> = ({ name, imageUrl }) => 
         <Image
           src={imageUrl}
           alt={name}
-          layout="fill"
-          objectFit="cover"
+          width={250}
+          height={200}
           className={styles.image}
         />
       </div>

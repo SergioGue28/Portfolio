@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "../../styles/components/UpdateInformation.module.css";
+import Styles from "../../../styles/components/Forms/UpdateInformation.module.css";
 import classNames from "classnames";
 
 interface UpdateInformationProps {
@@ -9,17 +9,41 @@ interface UpdateInformationProps {
 
 const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }) => {
   const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      name,
-      description,
-      profilePicture,
-    });
-    onClose(); // Close the modal after submitting
+    setLoading(true);
+    
+    const formData = new FormData();
+    formData.append("fullName", name);
+    formData.append("position", position);
+    formData.append("description", description);
+    if (profilePicture) {
+      formData.append("photo", profilePicture);
+    }
+
+    try {
+      const response = await fetch("http://localhost:8080/portfolio", {
+        method: "PUT",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Error updating portfolio");
+      }
+
+      const updatedData = await response.json();
+      console.log("Portfolio updated successfully:", updatedData);
+      onClose();
+    } catch (error) {
+      console.error("Error updating portfolio:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,18 +52,17 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
     }
   };
 
-  if (!isOpen) return null; // Does not render if the modal is closed
+  if (!isOpen) return null;
 
   return (
     <div className={Styles.modalBackdrop}>
       <div className={Styles.modal}>
-        <button className={Styles.closeButton} onClick={onClose}>
+        <button className={Styles.closeButton} onClick={onClose} disabled={loading}>
           &times;
         </button>
         <h2 className={Styles.title}>Update Your Information</h2>
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.column}>
-            {/* Columna 1 */}
             <div className={Styles.formGroup}>
               <label htmlFor="profilePicture" className={Styles.label}>
                 Profile Picture
@@ -63,13 +86,26 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={Styles.input}
-                required
+                disabled={loading}
               />
             </div>
             
+            <div className={Styles.formGroup}>
+              <label htmlFor="position" className={Styles.label}>
+                Position
+              </label>
+              <input
+                type="text"
+                id="position"
+                placeholder="Enter your position"
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                className={Styles.input}
+                disabled={loading}
+              />
+            </div>
           </div>
 
-          {/* Columna 2 */}
           <div className={Styles.column}>
             <div className={Styles.formGroup}>
               <label htmlFor="description" className={Styles.label}>
@@ -81,17 +117,23 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className={Styles.textarea}
-                maxLength={400}
+                maxLength={1000}
+                disabled={loading}
               ></textarea>
-              <small className={Styles.charCount}>{description.length + "/400"}</small>
+              <small className={Styles.charCount}>{description.length + "/1000"}</small>
             </div>
           </div>
 
           <div className={Styles.formGroupButton}>
-            <button type="submit" className={Styles.button}>
-              Update Information
+            <button type="submit" className={Styles.button} disabled={loading}>
+              {loading ? "Updating..." : "Update Information"}
             </button>
-            <button type="button" className={classNames(Styles.button, Styles.cancelButton)} onClick={onClose}>
+            <button
+              type="button"
+              className={classNames(Styles.button, Styles.cancelButton)}
+              onClick={onClose}
+              disabled={loading}
+            >
               Cancel
             </button>
           </div>

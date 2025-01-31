@@ -3,8 +3,15 @@ import Styles from "../../styles/components/Header.module.css";
 import classNames from 'classnames';
 import Image from "next/image";
 import Link from "next/link";
+import UpdateInformation from "./Forms/UpdateInformation"
+import { useState } from "react";
+
 
 const Header: React.FC = () => {
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const handleCloseModal = () => setModalOpen(false);
+  const handleOpenModal = () => setModalOpen(true);
 
   return (
     
@@ -86,11 +93,12 @@ const Header: React.FC = () => {
             width={30}
             height={30}
             className={Styles.profilePicture}
+            onClick={handleOpenModal}
           />
       </div>
 
       </section>
-         
+      <UpdateInformation isOpen={isModalOpen} onClose={handleCloseModal} />
     </header>
   );
 };

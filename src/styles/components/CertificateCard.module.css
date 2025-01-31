@@ -17,22 +17,29 @@
 }
 
 .imageWrapper {
-  position: relative;
+  display: flex;
   width: 100%;
-  height: 180px;
+  height: 100%;
+}
+
+.image{
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .cardContent {
   padding: 16px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 8px;
+  background-color: #031A29;
 }
 
 .certificateName {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: #FFFFFF;
   margin: 0;
 }
 
