@@ -29,9 +29,10 @@ const Home: React.FC = () => {
             <Image
               src={portfolio.photo} 
               alt="Foto de perfil"
-              width={450}
-              height={500}
+              width={400}
+              height={450}
               className={classNames(Styles.profilePicture, Styles.fadeIn)}
+              priority
             />
           ) : (
             <p>Cargando imagen...</p>
@@ -61,26 +62,28 @@ const Home: React.FC = () => {
       </div>
 
       <section className={Styles.containerCard}>
-        <Link href="/Project" className={classNames(Styles.card, Styles.cardProject, Styles.projectFadeIn)}>
+        <Link href="./project" className={classNames(Styles.card, Styles.cardProject, Styles.projectFadeIn)}>
           <Image
             src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
             alt="Settings Icon"
             width={450}
             height={450}
             className={classNames(Styles.imgcard, Styles.imgcardProject)}
+            priority
           />
           <div className={Styles.textOverlay}>
             <h3 className={Styles.title}>All Projects</h3>
           </div>
         </Link>
 
-        <Link href="/Certificate" className={classNames(Styles.card, Styles.cardCertificate, Styles.certificateFadeIn)}>
+        <Link href="./certificate" className={classNames(Styles.card, Styles.cardCertificate, Styles.certificateFadeIn)}>
           <Image
             src="/img/liam-truong-htpU_wGEcW0-unsplash.JPG"
             alt="Certificates"
             width={450}
             height={450}
             className={classNames(Styles.imgcard, Styles.imgcardCertificate)}
+            priority
           />
           <div className={Styles.textOverlay}>
             <h3 className={Styles.title}>Certificates</h3>

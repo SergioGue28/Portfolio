@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Styles from "../../../styles/components/Forms/CertificateForm.module.css";
 import classNames from "classnames";
+import { toast } from "react-toastify";
 
 interface AddCertificateFormProps {
   isOpen: boolean;
@@ -8,26 +9,69 @@ interface AddCertificateFormProps {
   onAddCertificate: (certificate: { name: string; imageUrl: string }) => void;
 }
 
-const CertificateForm: React.FC<AddCertificateFormProps> = ({ isOpen, onClose, onAddCertificate }) => {
-  const [name, setName] = useState("");
+const CertificateForm: React.FC<AddCertificateFormProps> = ({
+  isOpen,
+  onClose,
+  onAddCertificate,
+}) => {
+  const [name, setCertificateName] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!name || !image) {
-      alert("Por favor, ingresa el nombre y selecciona una imagen.");
+      toast.warning("Por favor, ingresa el nombre y selecciona una imagen.");
       return;
     }
 
-    const imageUrl = URL.createObjectURL(image); // Simulación de carga de imagen
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Sesión expirada. Inicia sesión nuevamente.");
+      onClose();
+      return;
+    }
 
-    onAddCertificate({ name, imageUrl });
-    onClose();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("image", image);
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/certificate/addCertificate",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        const result = await response.json();
+        toast.success("Certificado agregado correctamente.");
+        onAddCertificate({ name, imageUrl: result.imageUrl });
+        onClose();
+      } else if (response.status === 401) {
+        toast.error("Sesión expirada. Redirigiendo al inicio de sesión...");
+        onClose();
+      } else {
+        toast.error("Error al subir el certificado.");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error al conectar con el servidor.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
+    if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);
     }
   };
@@ -37,7 +81,11 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({ isOpen, onClose, o
   return (
     <div className={Styles.modalBackdrop}>
       <div className={Styles.modal}>
-        <button className={Styles.closeButton} onClick={onClose} disabled={loading}>
+        <button
+          className={Styles.closeButton}
+          onClick={onClose}
+          disabled={loading}
+        >
           &times;
         </button>
         <h2 className={Styles.title}>Agregar Certificado</h2>
@@ -56,13 +104,15 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({ isOpen, onClose, o
           </div>
 
           <div className={Styles.formGroup}>
-            <label htmlFor="name" className={Styles.label}>Nombre del Certificado</label>
+            <label htmlFor="name" className={Styles.label}>
+              Nombre del Certificado
+            </label>
             <input
               type="text"
               id="name"
               placeholder="Ejemplo: Curso de React"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setCertificateName(e.target.value)}
               className={Styles.input}
               disabled={loading}
             />

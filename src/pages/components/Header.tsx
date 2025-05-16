@@ -1,102 +1,126 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Styles from "../../styles/components/Header.module.css";
-import classNames from 'classnames';
+import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import UpdateInformation from "./Forms/UpdateInformation"
-import { useState } from "react";
-
+import UpdateInformation from "./Forms/UpdateInformation";
+import { scroller } from "react-scroll";
+import GitHubButton from "./componentsLogo/GitHubButton";
+import LinkedInButton from "./componentsLogo/LinkedInButton";
+import WhatsAppButton from "./componentsLogo/GmailButton";
+import ModalMenu from "../components/Modals/ModalMenu";
 
 const Header: React.FC = () => {
-
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setHasToken(Boolean(token));
+    }
+  }, []);
+
   const handleCloseModal = () => setModalOpen(false);
   const handleOpenModal = () => setModalOpen(true);
 
+  const handleAboutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (router.pathname === "/Home") {
+      scroller.scrollTo("about", {
+        smooth: true,
+        duration: 1000,
+      });
+    } else {
+      router.push("/Home#about");
+    }
+  };
+
+  const toggleMenu = () => setMenuOpen(!isMenuOpen);
+
   return (
-    
     <header className={Styles.header}>
-
       <section className={Styles.containerHeader}>
-        
-        <div className={classNames( Styles.contentHeader, Styles.containerSocial)}>
-        <a 
-          href="https://www.instagram.com/sergiogue28/" 
-          target="_blank" 
-          rel="noopener noreferrer"
+        <div
+          className={classNames(Styles.contentHeader, Styles.containerSocial)}
         >
-          <div>
-            <Image
-              src="/img/instagram.png"
-              alt="Instagram Icon"
-              width={30}
-              height={30}
-              className={Styles.chat}
-            />
-          </div>
-        </a>
-
-        <a 
-          href="https://www.facebook.com/sergio.guerra.9212?locale=es_LA"  
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <div>
-            <Image
-              src="/img/facebook.png"
-              alt="Instagram Icon"
-              width={30}
-              height={30}
-              className={Styles.chat}
-            />
-          </div>
-        </a>
-
-        <a 
-          href="https://www.linkedin.com/in/sergio-guerra-0041a8274/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <div>
-            <Image
-              src="/img/linkedIn.png"
-              alt="Instagram Icon"
-              width={30}
-              height={30}
-              className={Styles.chat}
-            />
-          </div>
-        </a>
+          <WhatsAppButton />
+          <LinkedInButton />
+          <GitHubButton />
         </div>
 
-        <div className={classNames( Styles.contentHeader, Styles.containerSearch)}>
-          <Link href="/Home" className={classNames(Styles.buttonHeader, Styles.about)}>
-            <button className={classNames(Styles.buttonHeader, Styles.about)}>About</button>
+        <div
+          className={classNames(Styles.contentHeader, Styles.containerSearch)}
+        >
+          <button
+            className={classNames(Styles.buttonHeader, Styles.about)}
+            onClick={handleAboutClick}
+          >
+            About
+          </button>
+          <Link
+            href="/Home"
+            className={classNames(Styles.buttonHeader, Styles.project)}
+          >
+            <button className={classNames(Styles.buttonHeader, Styles.project)}>
+              Home
+            </button>
           </Link>
-          <Link href="/Home#about" className={classNames(Styles.buttonHeader, Styles.project)}>
-            <button className={classNames(Styles.buttonHeader, Styles.project)}>Project</button>
+          <Link
+            href="./ContactMe"
+            className={classNames(Styles.buttonHeader, Styles.certificate)}
+          >
+            <button
+              className={classNames(Styles.buttonHeader, Styles.certificate)}
+            >
+              Contact Me
+            </button>
           </Link>
-          <Link href="/Home#about" className={classNames(Styles.buttonHeader, Styles.certificate)}>
-            <button className={classNames(Styles.buttonHeader, Styles.certificate)}>Certificate</button>
-          </Link >
         </div>
 
-        <div className={classNames(Styles.contentHeader, Styles.containerProfile)}>
-        
-        <div className={Styles.tooltipContainer}>
+        <div
+          className={classNames(Styles.contentHeader, Styles.containerProfile)}
+        >
           <button className={Styles.btnProfile}>Sergio Guerra</button>
-          <div className={Styles.tooltip}>Editar nombre</div>
-        </div>
-        <Image
-            src="/img/menu.png"
-            alt="Foto de perfil"
-            width={30}
-            height={30}
-            className={Styles.profilePicture}
-            onClick={handleOpenModal}
-          />
-      </div>
 
+          {hasToken ? (
+            <Image
+              src="/img/menu.png"
+              alt="Foto de perfil"
+              width={30}
+              height={30}
+              className={Styles.profilePicture}
+              onClick={toggleMenu}
+              priority
+            />
+          ) : (
+            <div className={Styles.tooltipWrapper}>
+              <Image
+                src="/img/menu.png"
+                alt="Sin permisos"
+                width={30}
+                height={30}
+                className={Styles.profilePictureDisabled}
+                priority
+              />
+              <span className={Styles.tooltipText}>
+                Only the administrator has permission to edit the information.
+              </span>
+            </div>
+          )}
+
+          {isMenuOpen && hasToken && (
+            <ModalMenu
+              onEditUser={() => {
+                handleOpenModal();
+                setMenuOpen(false);
+              }}
+            />
+          )}
+        </div>
       </section>
       <UpdateInformation isOpen={isModalOpen} onClose={handleCloseModal} />
     </header>

@@ -1,0 +1,52 @@
+.GitHubBtn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.svgContainer {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.BG {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #24292e, #171a1d);
+  z-index: -1;
+  border-radius: 10px;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.GitHubBtn:hover {
+  box-shadow: 0 0 15px rgba(120, 131, 86, 0.5);
+}
+
+.GitHubBtn:hover .BG {
+  transform: rotate(25deg) scale(1.2);
+  transform-origin: bottom;
+}
+
+.GitHubBtn:hover .svgContainer {
+  background-color: rgba(255, 255, 255, 0.2);
+}

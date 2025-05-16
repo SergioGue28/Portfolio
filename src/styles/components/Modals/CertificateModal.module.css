@@ -1,0 +1,83 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+.imageContainer {
+  margin-bottom: 1rem;
+}
+
+.image {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.certificateName {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+@media (width >= 600px) and (width <= 1240px) {
+  .modal {
+    max-width: 600px;
+  }
+}
+
+@media (width >= 400px) and (width <= 700px) {
+  .modal {
+    max-width: 80%;
+    padding: 1.5rem;
+  }
+
+  .certificateName {
+    font-size: 1.2rem;
+  }
+
+  .closeButton {
+    font-size: 1.8rem;
+    top: 8px;
+    right: 10px;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Asegura que no se recorte la imagen */
+  }
+}

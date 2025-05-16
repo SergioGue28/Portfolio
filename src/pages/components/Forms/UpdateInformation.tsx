@@ -1,45 +1,81 @@
 import React, { useState } from "react";
 import Styles from "../../../styles/components/Forms/UpdateInformation.module.css";
 import classNames from "classnames";
+import { toast } from "react-toastify";
 
 interface UpdateInformationProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }) => {
+const UpdateInformation: React.FC<UpdateInformationProps> = ({
+  isOpen,
+  onClose,
+}) => {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in.", { autoClose: 3000 });
+      setLoading(false);
+      onClose();
+      return;
+    }
+
     setLoading(true);
-    
+
     const formData = new FormData();
     formData.append("fullName", name);
     formData.append("position", position);
     formData.append("description", description);
+    formData.append("email", email);
+    formData.append("phone", phone);
     if (profilePicture) {
       formData.append("photo", profilePicture);
     }
 
     try {
-      const response = await fetch("http://localhost:8080/portfolio", {
-        method: "PUT",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:8080/portfolio/updateInformation",
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (response.status === 401 || response.status === 403) {
+        toast.error("Authentication required. Redirecting to login...", {
+          autoClose: 3000,
+        });
+        setLoading(false);
+        onClose();
+
+        return;
+      }
 
       if (!response.ok) {
-        throw new Error("Error updating portfolio");
+        const errorText = await response.text();
+        throw new Error(errorText || "Failed to update portfolio.");
       }
 
       const updatedData = await response.json();
-      console.log("Portfolio updated successfully:", updatedData);
+      toast.success("Information updated successfully!", { autoClose: 3000 });
+      console.log("Portfolio updated:", updatedData);
       onClose();
-    } catch (error) {
+    } catch (error: any) {
+      toast.error(`Error: ${error.message}`, { autoClose: 5000 });
       console.error("Error updating portfolio:", error);
     } finally {
       setLoading(false);
@@ -57,7 +93,11 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
   return (
     <div className={Styles.modalBackdrop}>
       <div className={Styles.modal}>
-        <button className={Styles.closeButton} onClick={onClose} disabled={loading}>
+        <button
+          className={Styles.closeButton}
+          onClick={onClose}
+          disabled={loading}
+        >
           &times;
         </button>
         <h2 className={Styles.title}>Update Your Information</h2>
@@ -72,6 +112,7 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
                 id="profilePicture"
                 onChange={handleFileChange}
                 className={Styles.fileInput}
+                disabled={loading}
               />
             </div>
 
@@ -89,7 +130,7 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
                 disabled={loading}
               />
             </div>
-            
+
             <div className={Styles.formGroup}>
               <label htmlFor="position" className={Styles.label}>
                 Position
@@ -100,6 +141,36 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
                 placeholder="Enter your position"
                 value={position}
                 onChange={(e) => setPosition(e.target.value)}
+                className={Styles.input}
+                disabled={loading}
+              />
+            </div>
+
+            <div className={Styles.formGroup}>
+              <label htmlFor="email" className={Styles.label}>
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={Styles.input}
+                disabled={loading}
+              />
+            </div>
+
+            <div className={Styles.formGroup}>
+              <label htmlFor="phone" className={Styles.label}>
+                Phone
+              </label>
+              <input
+                type="text"
+                id="phone"
+                placeholder="Enter your phone number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className={Styles.input}
                 disabled={loading}
               />
@@ -120,7 +191,9 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({ isOpen, onClose }
                 maxLength={1000}
                 disabled={loading}
               ></textarea>
-              <small className={Styles.charCount}>{description.length + "/1000"}</small>
+              <small className={Styles.charCount}>
+                {description.length + "/1000"}
+              </small>
             </div>
           </div>
 

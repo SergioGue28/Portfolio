@@ -1,0 +1,79 @@
+/* Estilos generales */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #031A29;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Estilo del título */
+.title {
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Grupo de inputs */
+.inputGroup {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo de los inputs */
+.inputField {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+}
+
+.inputField::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Efecto al enfocar */
+.inputField:focus {
+  border: 2px solid #66E55B;
+}
+
+/* Botón de login */
+.loginButton {
+  background-color: #66E55B;
+  color: #000000;
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: #55C94E;
+  transform: scale(1.05);
+}

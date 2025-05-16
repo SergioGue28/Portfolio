@@ -8,7 +8,8 @@
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  width: 320px;
+  max-width: 320px;
+  height: 300px;
 }
 
 .card:hover {
@@ -18,8 +19,8 @@
 
 .imageWrapper {
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 250px;
 }
 
 .image{
@@ -61,4 +62,20 @@
 
 .detailsLink:hover {
   color: #0056b3;
+}
+
+@media 
+(width >= 600px) and
+(width <= 1240px){
+  .card {
+    width: 294px;
+  }
+}
+
+@media (width >= 400px) and 
+(width <= 700px) {
+  .card{
+    max-width: 150px;
+    max-height: 150px;
+  }
 }

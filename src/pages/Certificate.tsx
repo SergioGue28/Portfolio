@@ -1,44 +1,119 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../styles/Certificate.module.css";
-import Tittle from "./components/Title";
-import CertificateCard from "./components/CertificateCard";
+import CertificateCard from "./components/Cards/CertificateCard";
 import CertificateForm from "./components/Forms/CertificateForm";
+import PaginationProject from "./components/Pagination/PaginationProject";
+import Tittle from "./components/Title";
+import CertificateModal from "./components/Modals/CertificateModal";
 
 const Certificate: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [certificates, setCertificates] = useState([
-    { name: "Certificate 1", imageUrl: "/img/diploma-java-spring-1.png" },
-    { name: "Certificate 2", imageUrl: "/img/diploma-java-spring-1.png" }
-  ]);
+  const [certificates, setCertificates] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handleOpenModal = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
+  // Estado para token
+  const [token, setToken] = useState<string | null>(null);
 
-  const handleAddCertificate = (newCertificate: { name: string; imageUrl: string }) => {
+  // Estado para el certificado seleccionado
+  const [selectedCertificate, setSelectedCertificate] = useState<{
+    name: string;
+    imageUrl: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const savedToken = localStorage.getItem("token");
+    setToken(savedToken);
+
+    fetch("http://localhost:8080/certificate")
+      .then((response) => response.json())
+      .then((data) => {
+        setCertificates(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching certificates:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleOpenFormModal = () => setModalOpen(true);
+  const handleCloseFormModal = () => setModalOpen(false);
+
+  const handleCardClick = (certificate: { name: string; imageUrl: string }) => {
+    setSelectedCertificate(certificate);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedCertificate(null);
+  };
+
+  const handleAddCertificate = (newCertificate: {
+    name: string;
+    imageUrl: string;
+  }) => {
     setCertificates([...certificates, newCertificate]);
   };
 
+  const ITEMS_PER_PAGE = 6;
+  const totalPages = Math.ceil(certificates.length / ITEMS_PER_PAGE);
+  const displayedCertificates = certificates.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   return (
-    <nav className={Styles.nav}>
+    <div className={Styles.container}>
       <Tittle text="Certificados" />
-    
-      <div className={Styles.containerCertificate}>
-        {certificates.map((cert, index) => (
-          <CertificateCard key={index} name={cert.name} imageUrl={cert.imageUrl} />
-        ))}
-      </div>
+
+      {loading ? (
+        <p>Cargando certificados...</p>
+      ) : (
+        <div className={Styles.containerCard}>
+          {displayedCertificates.map((cert, index) => (
+            <CertificateCard
+              key={index}
+              name={cert.name}
+              imageUrl={cert.imageUrl}
+              onClick={() => handleCardClick(cert)}
+            />
+          ))}
+        </div>
+      )}
 
       <div className={Styles.containerButtonAggCard}>
-        <button className={Styles.buttonAggCard} onClick={handleOpenModal}>
-          Agg Certificate
-        </button>
-        <CertificateForm
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          onAddCertificate={handleAddCertificate}
-        />
+        <div className={Styles.containerPagination}>
+          <PaginationProject
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+
+        <div className={Styles.containerButton}>
+          {/* Mostrar botón solo si token existe */}
+          {token && (
+            <button className={Styles.buttonAggCard} onClick={handleOpenFormModal}>
+              Add Certificate
+            </button>
+          )}
+
+          <CertificateForm
+            isOpen={isModalOpen}
+            onClose={handleCloseFormModal}
+            onAddCertificate={handleAddCertificate}
+          />
+        </div>
       </div>
-    </nav>
+
+      {selectedCertificate && (
+        <CertificateModal
+          name={selectedCertificate.name}
+          imageUrl={selectedCertificate.imageUrl}
+          onClose={handleCloseModal}
+        />
+      )}
+    </div>
   );
 };
 

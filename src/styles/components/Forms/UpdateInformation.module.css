@@ -14,170 +14,191 @@
 
 /* Contenedor del modal */
 .modal {
-  width: 80%;
+  width: 90%; /* Ocupa más espacio en la pantalla */
+  max-width: 1000px; /* Ancho máximo para evitar que se expanda demasiado */
   height: 85%;
-  background-color: rgba(3, 26, 41, 0.7);
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  background-color: rgba(3, 26, 41, 0.9);
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
   padding: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow-y: auto;
 }
 
 /* Botón para cerrar */
 .closeButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #fff;
   cursor: pointer;
 }
 
 /* Título */
 .title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #fff;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* Formulario */
+/* Contenedor del formulario */
 .form {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: grid;
-  place-items: center;
+  width: 100%;
+  overflow-y: auto;
 }
 
-/* Columna del formulario */
+/* Contenedor principal en dos columnas */
+.formRow {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .column {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 95%;
+  width: 100%;
+  gap: 1rem;
 }
 
 /* Grupos de formularios */
 .formGroup {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding: 2px 0;
-
 }
 
-/* Etiqueta */
+/* Etiquetas */
 .label {
   font-size: 1rem;
+  font-weight: bold;
   color: #fff;
+  margin-bottom: 5px;
 }
 
-/* Inputs */
+/* Inputs y textarea */
 .input,
 .textarea,
 .fileInput {
-  width: 95%;
+  width: 90%;
   padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-radius: 8px;
   font-size: 1rem;
-  background-color: rgba(87, 102, 112, 0.5);
+  background-color: rgba(87, 102, 112, 0.8);
   color: #fff;
+  outline: none;
 }
 
 /* Área de texto */
 .textarea {
-  height: 180px;
+  height: 150px;
   resize: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Contador de caracteres */
 .charCount {
   font-size: 0.85rem;
   text-align: right;
+  padding-right: 5rem;
+  padding-top: 0.3rem;
   color: #ccc;
 }
 
-.formGroupButton{
+/* Botones alineados */
+.formGroupButton {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1rem;
   width: 100%;
 }
 
+/* Botones */
 .button {
-  background-color: rgba(102, 229, 91, 0.5);
+  background-color: rgba(102, 229, 91, 0.8);
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  border-radius: 5px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 0 1rem;
+  margin-left: 1rem;
 }
 
 .button:hover {
-  background-color: rgba(76, 183, 70, 0.5);
+  background-color: rgba(76, 183, 70, 0.9);
 }
 
 .cancelButton {
-  background-color: rgba(255, 92, 92, 0.5);
-  color: #fff;
+  background-color: rgba(255, 92, 92, 0.8);
 }
 
 .cancelButton:hover {
-  background-color: rgba(214, 69, 69, 0.5);
+  background-color: rgba(214, 69, 69, 0.9);
 }
 
-
-@media (width >= 600px) and
+/* Ajuste responsivo para tablet */
+@media 
+(width >= 600px) and
 (width <= 1240px){
-  .input,
-  .textarea,
-  .fileInput {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-  .textarea{
-    height: 282px;
-    white-space: pre-wrap; 
-    word-wrap: break-word; 
-    overflow-wrap: break-word;
-  }
-}
-
-@media (width >= 400px) and
-(width <= 700px) {
-  .modal{
-    height: auto;
-  }
-  .input,
-  .textarea,
-  .fileInput {
-    padding: 0.5rem;
-    font-size: 0.7rem;
-    color: #fff;
-  }
-  .textarea{
-    height: 260px;
-  }
-.column {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 1rem;
+  .modal {
+    padding: 1.5rem;
   }
   .title {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
-  .button {
-    padding: 0.5rem 1rem;
+  .charCount {
+    padding-right: 3rem;
+  }
+  .label {
+    padding: 7px 0;
   }
 
+}
+
+/* Ajuste responsivo para móviles */
+@media 
+(width >= 400px) and
+(width <= 700px){
+  .modal {
+    padding: 1rem;
+    width: 85%;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .label{
+    font-size: 0.8rem;
+    gap: 1rem;  
+    padding: 8px 0;
+  }
+  .input,
+  .textarea,
+  .fileInput {
+    width: 80%;
+  }
+  .formGroupButton{
+    width: 90%;
+    padding: 0;
+  }
+  .button {
+    font-size: 12px;
+  }
+  .charCount {
+    padding-right: 2rem;
+  }
 }

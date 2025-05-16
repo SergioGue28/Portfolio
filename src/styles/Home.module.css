@@ -69,7 +69,6 @@
   color: #FFFFFF;
   
 }
-
 /* Parte del titulo de las card */
 .tittleCard {
   display: flex;
@@ -80,16 +79,13 @@
   align-items: center;
   height: 90px;
 }
-
 .textTitle{
   display: flex;
   font-size: 60px;
   color: #000000;
   font-weight: bold;
 }
-
 /* Parte de la card project and certificates */
-
 .containerCard{
   display: flex;
   justify-content: center;
@@ -147,11 +143,9 @@ background-color: rgba(0, 0, 0, 0.7);
 font-size: 1.5rem;
 font-weight: bold;
 }
-
 .subtitle {
 font-size: 1rem;
 }
-
 @media 
 (width >= 600px) and
 (width <= 1240px){
@@ -193,6 +187,7 @@ font-size: 1rem;
   .contex{
     padding : 20px ;
     max-width: 729px;
+    font-size: 13.5px;
  }
  .contexTitle{
   padding : 20px ;  
@@ -202,181 +197,9 @@ font-size: 1rem;
  }
 }
 
-@media (width >= 400px) and (width <= 700px) {
-  .home {
-    flex-direction: column;
-    align-items: center; /* Asegura que los elementos estén centrados */
-  }
-
-  .contex {
-    padding: 20px; 
-    max-width: 429.6px; 
-  }
-
-  .photo, .text {
-    justify-content: center;
-    align-items: center;
-    width: 100%; 
-  }
-
-  .profilePicture {
-    width: 200px; 
-    height: 250px;
-  }
-
-  .containerCard{
-    flex-direction: column;
-    gap: 0;
-    
-  }
-  .card{
-    padding: 1rem;
-    width: 266px;
-    height: 166px;
-    margin: 10px;
-  }
-  .imgcard{
-    width: 250px;
-    height: 150px;
-    
-  }
-  .textOverlay{
-    width: 25%;
-  }
-  .nav{
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-.text{
-    font-size: 12px;
-    color: #FFFFFF;
-    justify-content: center;
-    flex-direction: column; 
-    width: 55%;
-}
-
-.photo{
-    justify-content: center;
-    padding: 1rem 0;
-    width: 45%;
-    
-}
-
-.contex{
-    padding: 20px;
-    justify-content: center;
-    font-size: 15px;
-    white-space: pre-wrap; /* Preserva saltos de línea y ajusta texto */
-    word-wrap: break-word; /* Ajusta palabras largas */
-    overflow-wrap: break-word;
-    overflow: auto;
-    max-width: 750px;
-    box-sizing: border-box;
-}
-
-.contexTitle{
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-}
-.textTitleOcupation{
-  font-size: 35px;
-  color: #FFFFFF;
-  font-weight: bold;
-}
-.textTitleOcupationColor{
-  color: #66E55B;
-}
-
-/* Parte del titulo de las card */
-.tittleCard {
-  display: flex;
-  padding: 0;
-  width: 100%;
-  background-color: #FFFFFF;
-  justify-content: center;
-  align-items: center;
-  height: 90px;
-}
-
-.textTitle{
-  display: flex;
-  font-size: 60px;
-  color: #000000;
-  font-weight: bold;
-}
-
-/* Parte de las Card */
-.containerCard{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #031A29;
-    padding: 50px;
-    position: relative;
-    gap: 3rem;
-}
-
-.card{
-    display: flex;
-    align-items: center;
-    padding: 1.5rem;
-    margin: 1rem;
-    overflow: hidden;
-    justify-content: center;
-    position: relative;
-}
-.card:hover .imgcard {
-  filter: blur(0); 
-  transform: scale(1.1);
-}
-.imgcard {
-    mask-image: linear-gradient(#031A29 80%, transparent);
-    border-radius: 10px;
-    transition: transform 0.5s ease;
-    filter: blur(2px);
-}
-.imgcard:hover {
-  transform: scale(1.1);
-  filter: blur(0);
-}
-.textOverlay {
-  position: absolute;
-  display: flex;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%;
-  height: 20%;
-  color: #FFFFFF;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 8px;
-  transition: transform 1s ease, background-color 1s ease;
-}
-.textOverlay:hover {
-  transform: translate(-50%, -50%) scale(1.2); 
-  background-color: rgba(0, 0, 0, 0.7);
-}
-.title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.subtitle {
-  font-size: 1rem;
-}
-
-@media 
-(width >= 600px) and
-(width <= 1240px){
+@media (width >= 400px) and 
+(width <= 700px) {
+  
   .home{
     flex-direction: column;
   }
@@ -386,9 +209,10 @@ font-size: 1rem;
     width: 100%;
   }
   .profilePicture{
-    width: 300px;
+    width: 260px;
     height: 300px;
   }
+
   .containerCard{
     flex-direction: column;
     gap: 0;
@@ -406,92 +230,38 @@ font-size: 1rem;
   .textOverlay{
     width: 25%;
   }
+  
   .title{
     font-size: 1rem;
   }
   .contex{
     padding : 20px ;
     max-width: 729px;
+    font-size: 12px;
  }
  .contexTitle{
   padding : 20px ;  
  }
- .textTitleOcupation{
-  font-size: 34px;
+ .textTitleOcupationName, .textTitleOcupationColor {
+  font-size: 17px;
  }
+ 
 }
-
-@media 
-(width >= 400px) and
-(width <= 700px){
-  
-  .home{
-    flex-direction: column;
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  .contex{
-    padding: 20px 60px;
-    max-width: 429.6px;
-   
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
-  .photo, .text{
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  .profilePicture{
-    width: 250px;
-    height: 250px;
-  }
-  .containerCard{
-    flex-direction: column;
-    gap: 0;
-    
-  }
-  .card{
-    padding: 1rem;
-    width: 266px;
-    height: 166px;
-    margin: 10px;
-  }
-  .imgcard{
-    width: 250px;
-    height: 150px;
-    
-  }
-  .textOverlay{
-    width: 25%;
-  }
-  .title{
-    font-size: 12px;
-  }
-  .tittleCard{
-    height: 60px;
-  }
-  .textTitle{
-    font-size: 40px;
-  }
-  .textMayus{
-    padding: 0 50px;
-  }
-  .contex{
-    padding: 20px;
-    font-size: 11px;
-  }
-  .contexTitle{
-    padding: 20px;
-  }
-  .textTitleOcupation{
-    font-size: 19px;
-  }
-
-}
-
 .fadeIn {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 1s ease-in-out forwards;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -502,35 +272,11 @@ font-size: 1rem;
         transform: translateY(0);
     }
 }
-  .textTitleOcupationName, .textTitleOcupationColor{
-    font-size: 19px;
-  }
-}
-
-.fadeIn {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Efecto de desvanecimiento y movimiento para Projects */
 .projectFadeIn {
   opacity: 0;
   transform: translateX(-20px); /* Aparece desde la izquierda */
   animation: projectFadeIn 1s ease-in-out forwards;
 }
-
 @keyframes projectFadeIn {
   from {
     opacity: 0;
@@ -541,14 +287,11 @@ font-size: 1rem;
     transform: translateX(0); /* Termina en su posición original */
   }
 }
-
-/* Efecto de desvanecimiento y movimiento para Certificates */
 .certificateFadeIn {
   opacity: 0;
   transform: translateX(20px); /* Aparece desde la derecha */
   animation: certificateFadeIn 1s ease-in-out forwards;
 }
-
 @keyframes certificateFadeIn {
   from {
     opacity: 0;

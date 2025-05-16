@@ -1,5 +1,5 @@
 .containerFooter{
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     width: 100%;
     background-color: #151515;
@@ -11,14 +11,14 @@
     padding: 1rem;
 }
 .nameFooter{
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: center;
     padding-top: 2rem;
-    color: #FFFFFF; 
+    color: #66E55B; 
 }
 .ContainerSocial{
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: center;
     padding: 1rem;
@@ -28,6 +28,7 @@
 .buttonFooter{
     padding: 1rem;
     color: #FFFFFF;
+    text-decoration: none;
 }
 .social{
     padding: 1rem;
@@ -36,7 +37,7 @@
 
 }
 .Containerline {
-    display: flex; 
+    display: inline-flex; 
     justify-content: center; 
     width: 100%;
     padding: 20px 0; 
@@ -51,8 +52,31 @@
 }
 
 .logo{
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     color: #FFFFFF;
     padding: 1rem;
 }
+
+
+
+.logo p {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    animation: softGlow 3s infinite alternate ease-in-out;
+  }
+  
+  /* Animación de brillo más suave */
+  @keyframes softGlow {
+    0% {
+      text-shadow: 0 0 2px #66E55B, 0 0 4px #76AEFF, 0 0 6px #4c8be2;
+    }
+    100% {
+      text-shadow: 0 0 4px #66E55B, 0 0 8px #76AEFF, 0 0 12px #4c8be2;
+    }
+  }
+  
+  
+  
