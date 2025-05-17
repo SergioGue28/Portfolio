@@ -7,7 +7,11 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-const PaginationProject: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+const PaginationProject: React.FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
   const handlePrevious = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
@@ -22,13 +26,21 @@ const PaginationProject: React.FC<PaginationProps> = ({ currentPage, totalPages,
 
   return (
     <div className={Styles.paginationContainer}>
-      <button className={Styles.paginationButton} onClick={handlePrevious} disabled={currentPage === 1}>
+      <button
+        className={Styles.paginationButton}
+        onClick={handlePrevious}
+        disabled={currentPage === 1}
+      >
         Back
       </button>
       <span className={Styles.paginationText}>
-        Page {currentPage} de {totalPages}
+        Page {currentPage} of {totalPages}
       </span>
-      <button className={Styles.paginationButton} onClick={handleNext} disabled={currentPage === totalPages}>
+      <button
+        className={Styles.paginationButton}
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+      >
         Next
       </button>
     </div>

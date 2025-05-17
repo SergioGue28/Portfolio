@@ -7,7 +7,7 @@ const ContactMe: React.FC = () => {
     fullName: "",
     position: "",
     email: "",
-    phone: ""
+    phone: "",
   });
 
   useEffect(() => {
@@ -19,15 +19,24 @@ const ContactMe: React.FC = () => {
 
   return (
     <div className={styles.contactContainer}>
-      <h2 className={styles.title}>Contáctame</h2>
+      <h2 className={styles.title}>Contact me</h2>
       <div className={styles.contactInfo}>
-        <p><strong>Nombre:</strong> {contactInfo.fullName}</p>
-        <p><strong>Posición:</strong> {contactInfo.position}</p>
-        <p><strong>Email:</strong> <a href={`mailto:${contactInfo.email}`} className={styles.emailLink}>{contactInfo.email}</a></p>
-        <a 
-          href={`https://wa.me/${contactInfo.phone}`} 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <p>
+          <strong>Name:</strong> {contactInfo.fullName}
+        </p>
+        <p>
+          <strong>Position:</strong> {contactInfo.position}
+        </p>
+        <p>
+          <strong>Email:</strong>{" "}
+          <a href={`mailto:${contactInfo.email}`} className={styles.emailLink}>
+            {contactInfo.email}
+          </a>
+        </p>
+        <a
+          href={`https://wa.me/${contactInfo.phone}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className={styles.whatsappButton}
         >
           <FaWhatsapp /> WhatsApp
@@ -36,6 +45,5 @@ const ContactMe: React.FC = () => {
     </div>
   );
 };
-
 
 export default ContactMe;

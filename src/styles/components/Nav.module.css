@@ -1,19 +1,16 @@
 .nav {
-    display: flex;
-    padding: 0;
-    width: 100%;
-    background-color: #FFFFFF;
-  }
+  display: flex;
+  padding: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
 
-  .containerNav{
-    height: 90px;
-  }
+.containerNav {
+  height: 90px;
+}
 
-@media
-(width >= 400px) and
-(width <= 700px){
-
-  .containerNav{
+@media (width >= 400px) and (width <= 700px) {
+  .containerNav {
     height: 60px;
   }
 }

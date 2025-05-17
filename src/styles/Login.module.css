@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #031A29;
+  background-color: #031a29;
 }
 
 .loginForm {
@@ -21,7 +21,7 @@
 
 /* Estilo del título */
 .title {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   font-weight: bold;
@@ -44,7 +44,7 @@
   border-radius: 5px;
   font-size: 16px;
   background: rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
+  color: #ffffff;
   outline: none;
   transition: border 0.3s ease-in-out;
 }
@@ -55,12 +55,12 @@
 
 /* Efecto al enfocar */
 .inputField:focus {
-  border: 2px solid #66E55B;
+  border: 2px solid #66e55b;
 }
 
 /* Botón de login */
 .loginButton {
-  background-color: #66E55B;
+  background-color: #66e55b;
   color: #000000;
   border: none;
   padding: 12px;
@@ -74,6 +74,12 @@
 }
 
 .loginButton:hover {
-  background-color: #55C94E;
+  background-color: #55c94e;
   transform: scale(1.05);
+}
+
+@media (width >= 400px) and (width <= 700px) {
+  .loginForm {
+    width: 80%;
+  }
 }

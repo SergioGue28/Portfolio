@@ -152,9 +152,7 @@
 }
 
 /* Ajuste responsivo para tablet */
-@media 
-(width >= 600px) and
-(width <= 1240px){
+@media (width >= 600px) and (width <= 1240px) {
   .modal {
     padding: 1.5rem;
   }
@@ -167,13 +165,10 @@
   .label {
     padding: 7px 0;
   }
-
 }
 
 /* Ajuste responsivo para móviles */
-@media 
-(width >= 400px) and
-(width <= 700px){
+@media (width >= 400px) and (width <= 700px) {
   .modal {
     padding: 1rem;
     width: 85%;
@@ -181,9 +176,9 @@
   .title {
     font-size: 1.1rem;
   }
-  .label{
+  .label {
     font-size: 0.8rem;
-    gap: 1rem;  
+    gap: 1rem;
     padding: 8px 0;
   }
   .input,
@@ -191,7 +186,7 @@
   .fileInput {
     width: 80%;
   }
-  .formGroupButton{
+  .formGroupButton {
     width: 90%;
     padding: 0;
   }

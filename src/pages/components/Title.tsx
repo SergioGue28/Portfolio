@@ -1,12 +1,11 @@
 import React from "react";
 import Styles from "../../styles/components/Tittle.module.css";
 
-interface TittleProps{
+interface TittleProps {
   text: string;
 }
-const Tittle: React.FC<TittleProps> = ({text}) => {
+const Tittle: React.FC<TittleProps> = ({ text }) => {
   return (
-
     <nav className={Styles.tittle}>
       <div className={Styles.text}>{text}</div>
     </nav>

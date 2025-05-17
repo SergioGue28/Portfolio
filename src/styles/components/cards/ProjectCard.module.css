@@ -1,60 +1,59 @@
 .flipCard {
-    background-color: transparent;
-    width: 450px;
-    height: 320px;
-    perspective: 1000px;
-    font-family: sans-serif;
-  }
-  
-  .title {
-    font-size: 1.5em;
-    font-weight: 900;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .flipCardInner {
-    position: relative;
-    width: 95%;
-    height: 95%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
-  
-  .flipCard:hover .flipCardInner {
-    transform: rotateY(180deg);
-  }
-  
-  .flipCardFront, .flipCardBack {
-    box-shadow: 0 8px 14px 0 rgba(102, 229, 91, 0.2);
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border: 1px solid #66E55B;
-    border-radius: 1rem;
-    padding: 5px;
+  background-color: transparent;
+  width: 450px;
+  height: 320px;
+  perspective: 1000px;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: center;
+  padding: 10px;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 95%;
+  height: 95%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipCard:hover .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront,
+.flipCardBack {
+  box-shadow: 0 8px 14px 0 rgba(102, 229, 91, 0.2);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid #66e55b;
+  border-radius: 1rem;
+  padding: 5px;
 }
 
 .flipCardFront {
-    background: linear-gradient(120deg, #04374C 40%, #031A29 90%);
-    color: #66E55B;
+  background: linear-gradient(120deg, #04374c 40%, #031a29 90%);
+  color: #66e55b;
 }
 
 .flipCardBack {
-    background: linear-gradient(120deg, #02283A 30%, #04374C 88%);
-    color: white;
-    transform: rotateY(180deg);
-    box-shadow: 0 8px 14px 0 #FFFFFF;
+  background: linear-gradient(120deg, #02283a 30%, #04374c 88%);
+  color: white;
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 14px 0 #ffffff;
 }
 
-@media 
-(width >= 600px) and
-(width <= 1240px){
+@media (width >= 600px) and (width <= 1240px) {
   .flipCard {
     width: 210px;
     height: 210px;
@@ -62,11 +61,9 @@
   .title {
     font-size: 1em;
   }
-  
-}  
+}
 
-@media (width >= 400px) and 
-(width <= 700px) {
+@media (width >= 400px) and (width <= 700px) {
   .flipCard {
     width: 160px;
     height: 160px;

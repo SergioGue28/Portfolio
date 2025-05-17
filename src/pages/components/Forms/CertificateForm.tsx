@@ -22,13 +22,13 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
     e.preventDefault();
 
     if (!name || !image) {
-      toast.warning("Por favor, ingresa el nombre y selecciona una imagen.");
+      toast.warning("Please enter your name and select an image.");
       return;
     }
 
     const token = localStorage.getItem("token");
     if (!token) {
-      toast.error("Sesión expirada. Inicia sesión nuevamente.");
+      toast.error("Session expired. Please log in again.");
       onClose();
       return;
     }
@@ -53,18 +53,18 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
       if (response.ok) {
         const result = await response.json();
-        toast.success("Certificado agregado correctamente.");
+        toast.success("Certificate added successfully.");
         onAddCertificate({ name, imageUrl: result.imageUrl });
         onClose();
       } else if (response.status === 401) {
-        toast.error("Sesión expirada. Redirigiendo al inicio de sesión...");
+        toast.error("Session expired. Please log in again.");
         onClose();
       } else {
-        toast.error("Error al subir el certificado.");
+        toast.error("Error uploading certificate.");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Error al conectar con el servidor.");
+      toast.error("Error connecting to the server.");
     } finally {
       setLoading(false);
     }
@@ -88,11 +88,11 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
         >
           &times;
         </button>
-        <h2 className={Styles.title}>Agregar Certificado</h2>
+        <h2 className={Styles.title}>Add Certificate</h2>
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.formGroup}>
             <label htmlFor="certificateImage" className={Styles.label}>
-              Imagen del Certificado
+              Certificate Image
             </label>
             <input
               type="file"
@@ -105,12 +105,12 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
           <div className={Styles.formGroup}>
             <label htmlFor="name" className={Styles.label}>
-              Nombre del Certificado
+              Certificate Name
             </label>
             <input
               type="text"
               id="name"
-              placeholder="Ejemplo: Curso de React"
+              placeholder="Example: React Course"
               value={name}
               onChange={(e) => setCertificateName(e.target.value)}
               className={Styles.input}
@@ -120,7 +120,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
           <div className={Styles.formGroupButton}>
             <button type="submit" className={Styles.button} disabled={loading}>
-              {loading ? "Guardando..." : "Agregar Certificado"}
+              {loading ? "Saving..." : "Add Certificate"}
             </button>
             <button
               type="button"
@@ -128,7 +128,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
               onClick={onClose}
               disabled={loading}
             >
-              Cancelar
+              Cancel
             </button>
           </div>
         </form>

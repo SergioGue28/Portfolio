@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import styles from '../../../styles/components/cards/CertificateCard.module.css';
+import React from "react";
+import Image from "next/image";
+import styles from "../../../styles/components/cards/CertificateCard.module.css";
 
 interface CertificateCardProps {
   name: string;
@@ -8,7 +8,11 @@ interface CertificateCardProps {
   onClick: () => void;
 }
 
-const CertificateCard: React.FC<CertificateCardProps> = ({ name, imageUrl, onClick }) => {
+const CertificateCard: React.FC<CertificateCardProps> = ({
+  name,
+  imageUrl,
+  onClick,
+}) => {
   return (
     <div className={styles.card} onClick={onClick}>
       <div className={styles.imageWrapper}>

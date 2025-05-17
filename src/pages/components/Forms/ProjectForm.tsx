@@ -6,10 +6,18 @@ import classNames from "classnames";
 interface ProjectFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onAddProject: (project: { name: string; description: string; url: string }) => void;
+  onAddProject: (project: {
+    name: string;
+    description: string;
+    url: string;
+  }) => void;
 }
 
-const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject }) => {
+const ProjectForm: React.FC<ProjectFormProps> = ({
+  isOpen,
+  onClose,
+  onAddProject,
+}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
@@ -19,13 +27,13 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
     e.preventDefault();
 
     if (!name || !description || !url) {
-      toast.warning("Todos los campos son obligatorios.");
+      toast.warning("All fields are required.");
       return;
     }
 
     const token = localStorage.getItem("token");
     if (!token) {
-      toast.error("Sesión expirada. Inicia sesión nuevamente.");
+      toast.error("Session expired. Please log in again.");
       onClose();
       return;
     }
@@ -44,7 +52,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
       });
 
       if (response.ok) {
-        toast.success("Proyecto agregado correctamente.");
+        toast.success("Project added successfully.");
         onAddProject(project);
         // Limpiar campos después de agregar
         setName("");
@@ -52,14 +60,14 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
         setUrl("");
         onClose();
       } else if (response.status === 401) {
-        toast.error("Sesión expirada. Por favor, inicia sesión nuevamente.");
+        toast.error("Session expired. Please log in again.");
         onClose();
       } else {
-        toast.error("Error al agregar el proyecto.");
+        toast.error("Error adding project.");
       }
     } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-      toast.error("Error al conectar con el servidor.");
+      console.error("Error sending form:", error);
+      toast.error("Error connecting to the server.");
     } finally {
       setLoading(false);
     }
@@ -70,14 +78,18 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
   return (
     <div className={Styles.modalBackdrop}>
       <div className={Styles.modal}>
-        <button className={Styles.closeButton} onClick={onClose} disabled={loading}>
+        <button
+          className={Styles.closeButton}
+          onClick={onClose}
+          disabled={loading}
+        >
           &times;
         </button>
-        <h2 className={Styles.title}>Agregar Proyecto</h2>
+        <h2 className={Styles.title}>Add Project</h2>
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.formGroup}>
             <label htmlFor="name" className={Styles.label}>
-              Nombre del Proyecto
+              Project Name
             </label>
             <input
               type="text"
@@ -103,7 +115,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
           </div>
           <div className={Styles.formGroup}>
             <label htmlFor="url" className={Styles.label}>
-              URL del Proyecto
+              Project URL
             </label>
             <input
               type="text"
@@ -116,7 +128,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
           </div>
           <div className={Styles.formGroupButton}>
             <button type="submit" className={Styles.button} disabled={loading}>
-              {loading ? "Guardando..." : "Agregar Proyecto"}
+              {loading ? "Saving..." : "Add Project"}
             </button>
             <button
               type="button"
@@ -124,7 +136,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isOpen, onClose, onAddProject
               onClick={onClose}
               disabled={loading}
             >
-              Cancelar
+              Cancel
             </button>
           </div>
         </form>

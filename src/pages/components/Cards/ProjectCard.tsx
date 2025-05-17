@@ -1,16 +1,23 @@
-import React from 'react';
-import styles from '../../../styles/components/cards/ProjectCard.module.css';
+import React from "react";
+import styles from "../../../styles/components/cards/ProjectCard.module.css";
 
 interface ProjectCardProps {
-    name: string;
-    description: string;
-    url: string;
+  name: string;
+  description: string;
+  url: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ name, description, url }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  name,
+  description,
+  url,
+}) => {
   const openRoute = () => {
-    const fullUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`;
-    window.open(fullUrl, '_blank');
+    const fullUrl =
+      url.startsWith("http://") || url.startsWith("https://")
+        ? url
+        : `https://${url}`;
+    window.open(fullUrl, "_blank");
   };
 
   return (

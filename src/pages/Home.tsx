@@ -15,7 +15,7 @@ const Home: React.FC = () => {
   const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/portfolio") 
+    fetch("http://localhost:8080/portfolio")
       .then((response) => response.json())
       .then((data) => setPortfolio(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         <div className={classNames(Styles.photo, Styles.fadeIn)}>
           {portfolio?.photo ? (
             <Image
-              src={portfolio.photo} 
+              src={portfolio.photo}
               alt="Foto de perfil"
               width={400}
               height={450}
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
               priority
             />
           ) : (
-            <p>Cargando imagen...</p>
+            <p>Loading image...</p>
           )}
         </div>
 
@@ -43,16 +43,16 @@ const Home: React.FC = () => {
           <div className={Styles.contexTitle}>
             <span className={Styles.textTitleOcupationColor}>Hi this's </span>
             <span className={Styles.textTitleOcupationName}>
-              {portfolio?.fullName || "Cargando..."}
+              {portfolio?.fullName || "loading data..."}
             </span>
             <br />
             <span className={Styles.textTitleOcupationName}>
-              {portfolio?.position || "Cargando..."}
+              {portfolio?.position || "loading..."}
             </span>
           </div>
 
           <div className={Styles.contex}>
-            {portfolio?.description || "Cargando descripción..."}
+            {portfolio?.description || "Loading description..."}
           </div>
         </div>
       </section>
@@ -62,7 +62,14 @@ const Home: React.FC = () => {
       </div>
 
       <section className={Styles.containerCard}>
-        <Link href="./project" className={classNames(Styles.card, Styles.cardProject, Styles.projectFadeIn)}>
+        <Link
+          href="./project"
+          className={classNames(
+            Styles.card,
+            Styles.cardProject,
+            Styles.projectFadeIn
+          )}
+        >
           <Image
             src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
             alt="Settings Icon"
@@ -76,7 +83,14 @@ const Home: React.FC = () => {
           </div>
         </Link>
 
-        <Link href="./certificate" className={classNames(Styles.card, Styles.cardCertificate, Styles.certificateFadeIn)}>
+        <Link
+          href="./certificate"
+          className={classNames(
+            Styles.card,
+            Styles.cardCertificate,
+            Styles.certificateFadeIn
+          )}
+        >
           <Image
             src="/img/liam-truong-htpU_wGEcW0-unsplash.JPG"
             alt="Certificates"

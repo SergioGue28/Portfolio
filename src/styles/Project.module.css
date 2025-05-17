@@ -70,11 +70,9 @@
 
 @media (width >= 400px) and (width <= 700px) {
   .buttonAggCard {
-   
     font-size: 11px;
   }
   .buttonAggCard {
     width: 30%;
   }
-  
 }

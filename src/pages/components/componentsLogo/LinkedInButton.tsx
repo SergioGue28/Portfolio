@@ -3,7 +3,11 @@ import styles from "../../../styles/components/componentsLogo/LinkedInButton.mod
 
 const LinkedInButton: React.FC = () => {
   return (
-    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://www.linkedin.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <button className={styles.LinkedinBtn}>
         <span className={styles.svgContainer}>
           <svg

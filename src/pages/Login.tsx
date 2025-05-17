@@ -29,14 +29,13 @@ const Login = () => {
 
       const data = await response.json();
       localStorage.setItem("token", data.token); // Guardamos token para uso posterior
-      toast.success("✅ Inicio de sesión exitoso", { position: "top-center" });
+      toast.success("Successful login", { position: "top-center" });
 
       setTimeout(() => {
         router.push("/Home"); // Redirigimos al Home tras login
       }, 1500);
-
     } catch (err: any) {
-      toast.error(`❌ Error al iniciar sesión: ${err.message}`, {
+      toast.error(`❌ Login error: ${err.message}`, {
         position: "top-center",
       });
     }
@@ -45,12 +44,12 @@ const Login = () => {
   return (
     <div className={styles.loginContainer}>
       <form className={styles.loginForm} onSubmit={handleLogin}>
-        <h2 className={styles.title}>Iniciar Sesión</h2>
+        <h2 className={styles.title}>Login</h2>
         <div className={styles.inputGroup}>
           <input
             type="email"
             className={styles.inputField}
-            placeholder="Correo electrónico"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -60,14 +59,14 @@ const Login = () => {
           <input
             type="password"
             className={styles.inputField}
-            placeholder="Contraseña"
+            placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <button type="submit" className={styles.loginButton}>
-          Ingresar
+          Log in
         </button>
       </form>
       <ToastContainer />

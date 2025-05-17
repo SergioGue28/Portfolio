@@ -10,11 +10,13 @@ import GitHubButton from "./componentsLogo/GitHubButton";
 import LinkedInButton from "./componentsLogo/LinkedInButton";
 import WhatsAppButton from "./componentsLogo/GmailButton";
 import ModalMenu from "../components/Modals/ModalMenu";
+import ChangePassword from "./Forms/ChangePassword";
 
 const Header: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [hasToken, setHasToken] = useState(false);
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,6 +28,12 @@ const Header: React.FC = () => {
 
   const handleCloseModal = () => setModalOpen(false);
   const handleOpenModal = () => setModalOpen(true);
+
+  const handleOpenPasswordModal = () => {
+    setPasswordModalOpen(true);
+    setMenuOpen(false); // Cierra el menú
+  };
+  const handleClosePasswordModal = () => setPasswordModalOpen(false);
 
   const handleAboutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -76,7 +84,7 @@ const Header: React.FC = () => {
             <button
               className={classNames(Styles.buttonHeader, Styles.certificate)}
             >
-              Contact Me
+              Contact me
             </button>
           </Link>
         </div>
@@ -118,11 +126,16 @@ const Header: React.FC = () => {
                 handleOpenModal();
                 setMenuOpen(false);
               }}
+              onChangePassword={handleOpenPasswordModal}
             />
           )}
         </div>
       </section>
       <UpdateInformation isOpen={isModalOpen} onClose={handleCloseModal} />
+      <ChangePassword
+        isOpen={isPasswordModalOpen}
+        onClose={handleClosePasswordModal}
+      />
     </header>
   );
 };

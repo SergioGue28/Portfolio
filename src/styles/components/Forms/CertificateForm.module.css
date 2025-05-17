@@ -57,12 +57,14 @@
   color: #ffffff;
 }
 
-.input, .fileInput {
+.input,
+.fileInput {
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   color: #000000;
+  background-color: rgba(87, 102, 112, 0.8);
 }
 
 .fileInput {
@@ -76,7 +78,7 @@
 }
 
 .button {
-  background-color: #66E55B80;
+  background-color: #66e55b80;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -87,14 +89,14 @@
 }
 
 .button:hover {
-  background-color: #4CB74680;
+  background-color: #4cb74680;
 }
 
 .cancelButton {
-  background-color: #FF5C5C80;
+  background-color: #ff5c5c80;
   color: #ffffff;
 }
 
 .cancelButton:hover {
-  background-color: #D6454580;
+  background-color: #d6454580;
 }

@@ -1,82 +1,82 @@
-.containerFooter{
-    display: inline-flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #151515;
+.containerFooter {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #151515;
 }
-.containerElement{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 1rem;
+.containerElement {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem;
 }
-.nameFooter{
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 2rem;
-    color: #66E55B; 
+.nameFooter {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 2rem;
+  color: #66e55b;
 }
-.ContainerSocial{
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 1rem;
-    gap: 1rem; 
-    font-weight: bold;
+.ContainerSocial {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  font-weight: bold;
 }
-.buttonFooter{
-    padding: 1rem;
-    color: #FFFFFF;
-    text-decoration: none;
+.buttonFooter {
+  padding: 1rem;
+  color: #ffffff;
+  text-decoration: none;
 }
-.social{
-    padding: 1rem;
-    background-color: blue;
-    border-radius: 50%;
-
+.social {
+  padding: 1rem;
+  background-color: blue;
+  border-radius: 50%;
 }
 .Containerline {
-    display: inline-flex; 
-    justify-content: center; 
-    width: 100%;
-    padding: 20px 0; 
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
 }
 
 .line {
-    border: none; 
-    height: 1px; 
-    background-color: #76AEFF; 
-    margin: 0; 
-    width: 80%; 
+  border: none;
+  height: 1px;
+  background-color: #76aeff;
+  margin: 0;
+  width: 80%;
 }
 
-.logo{
-    display: inline-flex;
-    justify-content: center;
-    color: #FFFFFF;
-    padding: 1rem;
+.logo {
+  display: inline-flex;
+  justify-content: center;
+  color: #ffffff;
+  padding: 1rem;
 }
-
-
 
 .logo p {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: #ffffff;
-    animation: softGlow 3s infinite alternate ease-in-out;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  animation: softGlow 3s infinite alternate ease-in-out;
+}
+
+/* Animación de brillo más suave */
+@keyframes softGlow {
+  0% {
+    text-shadow:
+      0 0 2px #66e55b,
+      0 0 4px #76aeff,
+      0 0 6px #4c8be2;
   }
-  
-  /* Animación de brillo más suave */
-  @keyframes softGlow {
-    0% {
-      text-shadow: 0 0 2px #66E55B, 0 0 4px #76AEFF, 0 0 6px #4c8be2;
-    }
-    100% {
-      text-shadow: 0 0 4px #66E55B, 0 0 8px #76AEFF, 0 0 12px #4c8be2;
-    }
+  100% {
+    text-shadow:
+      0 0 4px #66e55b,
+      0 0 8px #76aeff,
+      0 0 12px #4c8be2;
   }
-  
-  
-  
+}

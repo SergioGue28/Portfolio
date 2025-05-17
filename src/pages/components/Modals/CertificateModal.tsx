@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from '../../../styles/components/modals/CertificateModal.module.css';
-import Image from 'next/image';
+import React from "react";
+import styles from "../../../styles/components/modals/CertificateModal.module.css";
+import Image from "next/image";
 
 interface CertificateModalProps {
   name: string;
@@ -8,7 +8,11 @@ interface CertificateModalProps {
   onClose: () => void;
 }
 
-const CertificateModal: React.FC<CertificateModalProps> = ({ name, imageUrl, onClose }) => {
+const CertificateModal: React.FC<CertificateModalProps> = ({
+  name,
+  imageUrl,
+  onClose,
+}) => {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>

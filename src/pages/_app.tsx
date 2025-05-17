@@ -1,6 +1,6 @@
 // src/pages/_app.tsx
-import { AppProps } from 'next/app';
-import RootLayout from './Layout'; 
+import { AppProps } from "next/app";
+import RootLayout from "./Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

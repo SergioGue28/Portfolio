@@ -93,7 +93,10 @@ const Certificate: React.FC = () => {
         <div className={Styles.containerButton}>
           {/* Mostrar botón solo si token existe */}
           {token && (
-            <button className={Styles.buttonAggCard} onClick={handleOpenFormModal}>
+            <button
+              className={Styles.buttonAggCard}
+              onClick={handleOpenFormModal}
+            >
               Add Certificate
             </button>
           )}

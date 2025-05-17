@@ -45,8 +45,7 @@ const Footer: React.FC = () => {
 
         <div className={Styles.logo}>
           <p>
-            For more information, click on Contact me or tap on the WhatsApp
-            icon.
+            For more information, click on Contact me or tap on the Email icon.
           </p>
         </div>
       </section>

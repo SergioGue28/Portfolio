@@ -17,7 +17,11 @@ const GmailButton: React.FC = () => {
   }, []);
 
   return (
-    <a href={`mailto:${emailInfo.email}`} target="_blank" rel="noopener noreferrer">
+    <a
+      href={`mailto:${emailInfo.email}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <button className={styles.GmailBtn}>
         <span className={styles.svgContainer}>
           <svg

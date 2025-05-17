@@ -1,28 +1,25 @@
 .tittle {
-    display: flex;
-    padding: 0;
-    width: 100%;
-    background-color: #031A29;
-    justify-content: center;
-    align-items: center;
-    height: 90px;
-  }
+  display: flex;
+  padding: 0;
+  width: 100%;
+  background-color: #031a29;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+}
 
-  .text{
-    display: flex;
-    font-size: 60px;
-    color: #66E55B;
-    font-weight: bold;
-  }
+.text {
+  display: flex;
+  font-size: 60px;
+  color: #66e55b;
+  font-weight: bold;
+}
 
-@media
-(width >= 400px) and
-(width <= 700px){
-
-  .tittle{
+@media (width >= 400px) and (width <= 700px) {
+  .tittle {
     height: 60px;
   }
-  .text{
+  .text {
     font-size: 40px;
   }
 }
