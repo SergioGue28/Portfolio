@@ -67,7 +67,7 @@ const Certificate: React.FC = () => {
       <Tittle text="Certificados" />
 
       {loading ? (
-        <p>Cargando certificados...</p>
+        <p>Loading certificates...</p>
       ) : (
         <div className={Styles.containerCard}>
           {displayedCertificates.map((cert, index) => (
