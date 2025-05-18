@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles/components/modals/CertificateModal.module.css";
+import styles from "../../../styles/components/Modals/CertificateModal.module.css";
 import Image from "next/image";
 
 interface CertificateModalProps {
