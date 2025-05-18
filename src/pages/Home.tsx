@@ -92,7 +92,7 @@ const Home: React.FC = () => {
           )}
         >
           <Image
-            src="/img/liam-truong-htpU_wGEcW0-unsplash.JPG"
+            src="/img/liam-truong-htpU_wGEcW0-unsplash.jpg"
             alt="Certificates"
             width={450}
             height={450}

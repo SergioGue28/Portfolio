@@ -41,7 +41,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
     try {
       const response = await fetch(
-        "hhttps://portfoliobackend-aay8.onrender.com/certificate/addCertificate",
+        "https://portfoliobackend-aay8.onrender.com/certificate/addCertificate",
         {
           method: "POST",
           headers: {
