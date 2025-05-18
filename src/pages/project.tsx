@@ -19,7 +19,7 @@ const Project: React.FC = () => {
     const savedToken = localStorage.getItem("token");
     setToken(savedToken);
 
-    fetch("http://localhost:8080/project")
+    fetch("https://portfoliobackend-aay8.onrender.com/project")
       .then((response) => response.json())
       .then((data) => setProjects(data))
       .catch((error) => console.error("Error fetching projects:", error));

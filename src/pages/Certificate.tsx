@@ -25,7 +25,7 @@ const Certificate: React.FC = () => {
     const savedToken = localStorage.getItem("token");
     setToken(savedToken);
 
-    fetch("http://localhost:8080/certificate")
+    fetch("https://portfoliobackend-aay8.onrender.com/certificate")
       .then((response) => response.json())
       .then((data) => {
         setCertificates(data);

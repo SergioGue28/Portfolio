@@ -45,7 +45,7 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({
 
     try {
       const response = await fetch(
-        "http://localhost:8080/portfolio/updateInformation",
+        "https://portfoliobackend-aay8.onrender.com/portfolio/updateInformation",
         {
           method: "PUT",
           headers: {

@@ -16,7 +16,7 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/changePassword", {
+      const response = await fetch("https://portfoliobackend-aay8.onrender.com/api/auth/changePassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

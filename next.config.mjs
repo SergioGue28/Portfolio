@@ -4,7 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST,
+        hostname: "img-portfolio-project.s3.us-east-2.amazonaws.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

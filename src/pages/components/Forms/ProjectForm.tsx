@@ -42,7 +42,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/project/addProject", {
+      const response = await fetch("https://portfoliobackend-aay8.onrender.com/project/addProject", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

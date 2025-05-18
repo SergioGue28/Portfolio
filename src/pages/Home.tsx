@@ -15,7 +15,7 @@ const Home: React.FC = () => {
   const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/portfolio")
+    fetch("https://portfoliobackend-aay8.onrender.com/portfolio")
       .then((response) => response.json())
       .then((data) => setPortfolio(data))
       .catch((error) => console.error("Error fetching data:", error));

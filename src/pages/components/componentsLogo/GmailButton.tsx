@@ -5,7 +5,7 @@ const GmailButton: React.FC = () => {
   const [emailInfo, setEmailInfo] = useState({ email: "" });
 
   useEffect(() => {
-    fetch("http://localhost:8080/portfolio")
+    fetch("https://portfoliobackend-aay8.onrender.com/portfolio")
       .then((response) => response.json())
       .then((data) => {
         // Asegúrate de que `data.email` exista
