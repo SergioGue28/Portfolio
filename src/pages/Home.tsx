@@ -63,7 +63,7 @@ const Home: React.FC = () => {
 
       <section className={Styles.containerCard}>
         <Link
-          href="./project"
+          href="./Project"
           className={classNames(
             Styles.card,
             Styles.cardProject,
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
         </Link>
 
         <Link
-          href="./certificate"
+          href="./Certificate"
           className={classNames(
             Styles.card,
             Styles.cardCertificate,
