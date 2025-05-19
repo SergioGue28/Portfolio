@@ -84,7 +84,7 @@ const Home: React.FC = () => {
         </Link>
 
         <Link
-          href="./certificate"
+          href="./Certificate"
           className={classNames(
             Styles.card,
             Styles.cardCertificate,
