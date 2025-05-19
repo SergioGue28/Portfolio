@@ -77,3 +77,10 @@
     max-height: 150px;
   }
 }
+
+@media (width < 400px) {
+  .card {
+    max-width: 130px;
+    max-height: 130px;
+  }
+}

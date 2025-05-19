@@ -246,6 +246,57 @@
     font-size: 17px;
   }
 }
+
+@media (width < 400px) {
+  .home {
+    flex-direction: column;
+  }
+  .photo,
+  .text {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+  .profilePicture {
+    width: 240px;
+    height: 280px;
+  }
+
+  .containerCard {
+    flex-direction: column;
+    gap: 0;
+  }
+  .card {
+    padding: 0.5rem;
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+  }
+  .imgcard {
+    width: 350px;
+    height: 150px;
+  }
+  .textOverlay {
+    width: 25%;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+  .contex {
+    padding: 20px;
+    max-width: 729px;
+    font-size: 12px;
+  }
+  .contexTitle {
+    padding: 17px;
+  }
+  .textTitleOcupationName,
+  .textTitleOcupationColor {
+    font-size: 17px;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

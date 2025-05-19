@@ -14,3 +14,9 @@
     height: 60px;
   }
 }
+
+@media (width < 400px) {
+  .containerNav {
+    height: 60px;
+  }
+}

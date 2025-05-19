@@ -23,3 +23,9 @@
     font-size: 40px;
   }
 }
+
+@media (width < 400px) {
+  .text {
+    font-size: 40px;
+  }
+}

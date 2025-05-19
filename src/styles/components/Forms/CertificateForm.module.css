@@ -100,3 +100,10 @@
 .cancelButton:hover {
   background-color: #d6454580;
 }
+
+@media (width <= 400px) {
+  .modal {
+    width: 300px;
+    padding: 20px;
+  }
+}

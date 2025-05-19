@@ -64,7 +64,7 @@ const Certificate: React.FC = () => {
 
   return (
     <div className={Styles.container}>
-      <Tittle text="Certificados" />
+      <Tittle text="Certificates" />
 
       {loading ? (
         <p>Loading certificates...</p>

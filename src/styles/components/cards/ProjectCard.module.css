@@ -72,3 +72,13 @@
     font-size: 1em;
   }
 }
+
+@media (width < 400px) {
+  .flipCard {
+    width: 145px;
+    height: 145px;
+  }
+  .title {
+    font-size: 0.8em;
+  }
+}

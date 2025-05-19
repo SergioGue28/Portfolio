@@ -184,7 +184,7 @@
   .input,
   .textarea,
   .fileInput {
-    width: 80%;
+    width: 90%;
   }
   .formGroupButton {
     width: 90%;
@@ -192,6 +192,36 @@
   }
   .button {
     font-size: 12px;
+  }
+  .charCount {
+    padding-right: 2rem;
+  }
+}
+
+@media (width < 400px) {
+  .modal {
+    padding: 1rem;
+    width: 80%;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .label {
+    font-size: 0.8rem;
+    gap: 1rem;
+    padding: 8px 0;
+  }
+  .input,
+  .textarea,
+  .fileInput {
+    width: 90%;
+  }
+  .formGroupButton {
+    width: 90%;
+    padding: 0;
+  }
+  .button {
+    font-size: 11px;
   }
   .charCount {
     padding-right: 2rem;

@@ -66,11 +66,9 @@
   }
 }
 
-@media (width >= 400px) and (width <= 700px) {
-  .buttonAggCard {
-    font-size: 11px;
-  }
+@media (width <= 400px) {
   .buttonAggCard {
     width: 30%;
+    font-size: 11px;
   }
 }
