@@ -19,12 +19,12 @@ const Footer: React.FC = () => {
           >
             Home
           </Link>
-          <Link
+          {/* <Link
             href="/Resume"
             className={classNames(Styles.buttonFooter, Styles.resume)}
           >
             Resume
-          </Link>
+          </Link> */}
           <Link
             href="/ContactMe"
             className={classNames(Styles.buttonFooter, Styles.contactUs)}
