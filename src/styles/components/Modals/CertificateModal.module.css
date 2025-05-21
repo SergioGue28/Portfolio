@@ -53,13 +53,7 @@
   color: #000;
 }
 
-@media (width >= 600px) and (width <= 1240px) {
-  .modal {
-    max-width: 600px;
-  }
-}
-
-@media (width <= 400px) {
+@media (width <= 800px) {
   .modal {
     max-width: 80%;
     padding: 1.5rem;

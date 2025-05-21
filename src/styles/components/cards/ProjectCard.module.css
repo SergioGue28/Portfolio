@@ -54,6 +54,15 @@
   box-shadow: 0 8px 14px 0 #ffffff;
 }
 
+.multiLineEllipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5; /* número de líneas visibles antes de cortar */
+  line-clamp: 3; /* por compatibilidad */
+}
+
 @media (width >= 600px) and (width <= 1240px) {
   .flipCard {
     width: 210px;

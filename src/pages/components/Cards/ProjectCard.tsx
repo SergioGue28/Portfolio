@@ -29,7 +29,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
         <div className={styles.flipCardBack}>
           <p className={styles.title}>Description</p>
-          <p>{description}</p>
+          <p className={`${styles.ellipsisText} ${styles.multiLineEllipsis}`}>
+            {description}
+          </p>
         </div>
       </div>
     </div>
