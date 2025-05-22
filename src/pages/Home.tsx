@@ -3,7 +3,7 @@ import Link from "next/link";
 import Styles from "../styles/Home.module.css";
 import Image from "next/image";
 import classNames from "classnames";
-
+import Loader from "./components/Loader";
 interface PortfolioData {
   fullName: string;
   position: string;
@@ -39,27 +39,25 @@ const Home: React.FC = () => {
           )}
         </div>
 
-        <div className={classNames(Styles.text, Styles.fadeIn)}>
-          <div className={Styles.contexTitle}>
-            <span className={Styles.textTitleOcupationColor}>Hi this's </span>
-            <span className={Styles.textTitleOcupationName}>
-              {portfolio?.fullName || "loading data..."}
-            </span>
-            <br />
-            <span className={Styles.textTitleOcupationName}>
-              {portfolio?.position || "loading..."}
-            </span>
+        {/* Reemplazo del texto por el loader */}
+        {!portfolio ? (
+          <Loader />
+        ) : (
+          <div className={classNames(Styles.text, Styles.fadeIn)}>
+            <div className={Styles.contexTitle}>
+              <span className={Styles.textTitleOcupationColor}>Hi this's </span>
+              <span className={Styles.textTitleOcupationName}>
+                {portfolio.fullName}
+              </span>
+              <br />
+              <span className={Styles.textTitleOcupationName}>
+                {portfolio.position}
+              </span>
+            </div>
+            <div className={Styles.contex}>{portfolio.description}</div>
           </div>
-
-          <div className={Styles.contex}>
-            {portfolio?.description || "Loading description..."}
-          </div>
-        </div>
+        )}
       </section>
-
-      <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
-        <div className={Styles.textTitle}>ABOUT</div>
-      </div>
 
       <section className={Styles.containerCard}>
         <Link

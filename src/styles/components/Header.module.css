@@ -126,9 +126,16 @@
   transform: scale(1.1);
 }
 
-@media (min-width: 700px) and (max-width: 1000px) {
+@media (min-width: 800px) and (max-width: 1000px) {
   .buttonHeader {
     font-size: 0.9rem;
+    width: 86px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 800px) {
+  .buttonHeader {
+    font-size: 0.8rem;
     width: 86px;
   }
 }
