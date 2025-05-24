@@ -148,7 +148,30 @@
 .subtitle {
   font-size: 1rem;
 }
-@media (width >= 600px) and (width <= 1240px) {
+
+@media (width >= 1500px) and (width <= 2525px) {
+   .card {
+    padding: 1rem;
+    max-width: 600px;
+    max-height: 500px;
+    margin: 10px;
+  }
+  .imgcard {
+    max-width: 600px;
+    max-height: 500px;
+  }
+   .contex {
+    padding: 20px;
+    max-width: 2240px;
+    font-size: 13.5px;
+  }
+  .profilePicture {
+    width: 400px;
+    height: 450px;
+  }
+}
+
+@media (width >= 600px) and (width <= 1200px) {
   .home {
     flex-direction: column;
   }
@@ -169,13 +192,13 @@
   }
   .card {
     padding: 1rem;
-    width: 366px;
-    height: 166px;
+    max-width: 500px;
+    max-height: 400px;
     margin: 10px;
   }
   .imgcard {
-    width: 350px;
-    height: 150px;
+    max-width: 500px;
+    max-height: 400px;
   }
   .textOverlay {
     width: 25%;
@@ -186,7 +209,7 @@
   }
   .contex {
     padding: 20px;
-    max-width: 729px;
+    max-width: 1240px;
     font-size: 13.5px;
   }
   .contexTitle {
@@ -197,7 +220,7 @@
   }
 }
 
-@media (width >= 400px) and (width <= 700px) {
+@media (width >= 400px) and (width < 600px) {
   .home {
     flex-direction: column;
   }
@@ -276,8 +299,8 @@
     margin: 10px;
   }
   .imgcard {
-    width: 350px;
-    height: 150px;
+    width: 300px;
+    height: 100px;
   }
   .textOverlay {
     width: 25%;
