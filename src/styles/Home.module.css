@@ -149,8 +149,8 @@
   font-size: 1rem;
 }
 
-@media (width >= 1500px) and (width <= 2525px) {
-   .card {
+@media (width >= 1600px) and (width <= 2525px) {
+  .card {
     padding: 1rem;
     max-width: 600px;
     max-height: 500px;
@@ -160,7 +160,7 @@
     max-width: 600px;
     max-height: 500px;
   }
-   .contex {
+  .contex {
     padding: 20px;
     max-width: 2240px;
     font-size: 13.5px;
