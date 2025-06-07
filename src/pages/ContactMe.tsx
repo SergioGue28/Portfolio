@@ -34,7 +34,7 @@ const ContactMe: React.FC = () => {
           </a>
         </p>
         <a
-          href={`https://wa.me/${contactInfo.phone}`}
+          href={`https://wa.me/57${contactInfo.phone}`}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.whatsappButton}
