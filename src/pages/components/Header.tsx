@@ -8,7 +8,7 @@ import UpdateInformation from "./Forms/UpdateInformation";
 import { scroller } from "react-scroll";
 import GitHubButton from "./componentsLogo/GitHubButton";
 import LinkedInButton from "./componentsLogo/LinkedInButton";
-import WhatsAppButton from "./componentsLogo/GmailButton";
+import GmailButton from "./componentsLogo/GmailButton";
 import ModalMenu from "../components/Modals/ModalMenu";
 import ChangePassword from "./Forms/ChangePassword";
 
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
         <div
           className={classNames(Styles.contentHeader, Styles.containerSocial)}
         >
-          <WhatsAppButton />
+          <GmailButton />
           <LinkedInButton />
           <GitHubButton />
         </div>

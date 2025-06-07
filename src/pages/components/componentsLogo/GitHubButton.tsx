@@ -3,7 +3,7 @@ import styles from "../../../styles/components/componentsLogo/GitHubButton.modul
 
 const GitHubButton: React.FC = () => {
   return (
-    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/SergioGue28" target="_blank" rel="noopener noreferrer">
       <button className={styles.GitHubBtn}>
         <span className={styles.svgContainer}>
           <svg
