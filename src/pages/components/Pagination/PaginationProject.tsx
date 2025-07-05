@@ -31,17 +31,17 @@ const PaginationProject: React.FC<PaginationProps> = ({
         onClick={handlePrevious}
         disabled={currentPage === 1}
       >
-        Back
+        Atras
       </button>
       <span className={Styles.paginationText}>
-        Page {currentPage} of {totalPages}
+        Pagina {currentPage} de {totalPages}
       </span>
       <button
         className={Styles.paginationButton}
         onClick={handleNext}
         disabled={currentPage === totalPages}
       >
-        Next
+        Siguiente
       </button>
     </div>
   );

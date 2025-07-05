@@ -22,10 +22,10 @@ const ContactMe: React.FC = () => {
       <h2 className={styles.title}>Contact me</h2>
       <div className={styles.contactInfo}>
         <p>
-          <strong>Name:</strong> {contactInfo.fullName}
+          <strong>Nombre:</strong> {contactInfo.fullName}
         </p>
         <p>
-          <strong>Position:</strong> {contactInfo.position}
+          <strong>Título:</strong> {contactInfo.position}
         </p>
         <p>
           <strong>Email:</strong>{" "}

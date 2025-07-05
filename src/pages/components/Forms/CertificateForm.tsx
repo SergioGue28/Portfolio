@@ -88,11 +88,11 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
         >
           &times;
         </button>
-        <h2 className={Styles.title}>Add Certificate</h2>
+        <h2 className={Styles.title}>Añadir Certificado</h2>
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.formGroup}>
             <label htmlFor="certificateImage" className={Styles.label}>
-              Certificate Image
+              Imagen
             </label>
             <input
               type="file"
@@ -105,12 +105,12 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
           <div className={Styles.formGroup}>
             <label htmlFor="name" className={Styles.label}>
-              Certificate Name
+              Nombre
             </label>
             <input
               type="text"
               id="name"
-              placeholder="Example: React Course"
+              placeholder="Ejemplo: React Course"
               value={name}
               onChange={(e) => setCertificateName(e.target.value)}
               className={Styles.input}
@@ -120,7 +120,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
           <div className={Styles.formGroupButton}>
             <button type="submit" className={Styles.button} disabled={loading}>
-              {loading ? "Saving..." : "Add Certificate"}
+              {loading ? "Saving..." : "Añadir Certificado"}
             </button>
             <button
               type="button"
@@ -128,7 +128,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
               onClick={onClose}
               disabled={loading}
             >
-              Cancel
+              Cancelar
             </button>
           </div>
         </form>

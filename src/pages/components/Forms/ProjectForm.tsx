@@ -85,11 +85,11 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
         >
           &times;
         </button>
-        <h2 className={Styles.title}>Add Project</h2>
+        <h2 className={Styles.title}>Agregar proyecto</h2>
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.formGroup}>
             <label htmlFor="name" className={Styles.label}>
-              Project Name
+              Nombre
             </label>
             <input
               type="text"
@@ -115,7 +115,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
           </div>
           <div className={Styles.formGroup}>
             <label htmlFor="url" className={Styles.label}>
-              Project URL
+              Enlace URL
             </label>
             <input
               type="text"
@@ -128,7 +128,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
           </div>
           <div className={Styles.formGroupButton}>
             <button type="submit" className={Styles.button} disabled={loading}>
-              {loading ? "Saving..." : "Add Project"}
+              {loading ? "Saving..." : "Agregar proyecto"}
             </button>
             <button
               type="button"
@@ -136,7 +136,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
               onClick={onClose}
               disabled={loading}
             >
-              Cancel
+              Cancelar
             </button>
           </div>
         </form>

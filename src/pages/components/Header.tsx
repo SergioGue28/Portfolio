@@ -67,14 +67,14 @@ const Header: React.FC = () => {
             className={classNames(Styles.buttonHeader, Styles.about)}
             onClick={handleAboutClick}
           >
-            About
+            Acerca de
           </button>
           <Link
             href="/Home"
             className={classNames(Styles.buttonHeader, Styles.project)}
           >
             <button className={classNames(Styles.buttonHeader, Styles.project)}>
-              Home
+              Inicio
             </button>
           </Link>
           <Link
@@ -84,7 +84,7 @@ const Header: React.FC = () => {
             <button
               className={classNames(Styles.buttonHeader, Styles.certificate)}
             >
-              Contact me
+              Contáctame
             </button>
           </Link>
         </div>

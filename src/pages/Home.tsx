@@ -41,24 +41,24 @@ const Home: React.FC = () => {
 
         <div className={classNames(Styles.text, Styles.fadeIn)}>
           <div className={Styles.contexTitle}>
-            <span className={Styles.textTitleOcupationColor}>Hi this's </span>
+            <span className={Styles.textTitleOcupationColor}>Hola soy </span>
             <span className={Styles.textTitleOcupationName}>
-              {portfolio?.fullName || "loading data..."}
+              {portfolio?.fullName || "Cargando datos..."}
             </span>
             <br />
             <span className={Styles.textTitleOcupationName}>
-              {portfolio?.position || "loading Name..."}
+              {portfolio?.position || "Cargando... ⏳⏳"}
             </span>
           </div>
 
           <div className={Styles.contex}>
-            {portfolio?.description || "Loading description..."}
+            {portfolio?.description || "Agradecemos tu paciencia. Debido a que el servidor opera en la versión gratuita de Render, puede experimentar un arranque en frío (cold start) tras 20 minutos de inactividad. Esto resulta en una carga inicial de aproximadamente 1 minuto, únicamente en el primer acceso.😅"}
           </div>
         </div>
       </section>
 
       <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
-        <div className={Styles.textTitle}>ABOUT</div>
+        <div className={Styles.textTitle}>ACERCA DE</div>
       </div>
 
       <section className={Styles.containerCard}>
@@ -79,7 +79,7 @@ const Home: React.FC = () => {
             priority
           />
           <div className={Styles.textOverlay}>
-            <h3 className={Styles.title}>All Projects</h3>
+            <h3 className={Styles.title}>Proyectos</h3>
           </div>
         </Link>
 
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
             priority
           />
           <div className={Styles.textOverlay}>
-            <h3 className={Styles.title}>Certificates</h3>
+            <h3 className={Styles.title}>Certificados</h3>
           </div>
         </Link>
       </section>

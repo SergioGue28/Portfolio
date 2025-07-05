@@ -10,14 +10,14 @@ const Footer: React.FC = () => {
   return (
     <footer className={Styles.footer}>
       <section className={Styles.containerFooter}>
-        <div className={Styles.nameFooter}>Backend Developer</div>
+        <div className={Styles.nameFooter}>Ingeniero Informático</div>
 
         <section className={Styles.containerElement}>
           <Link
             href="/Home"
             className={classNames(Styles.buttonFooter, Styles.home)}
           >
-            Home
+            Inicio
           </Link>
           {/* <Link
             href="/Resume"
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
             href="/ContactMe"
             className={classNames(Styles.buttonFooter, Styles.contactUs)}
           >
-            Contact Us
+            Contáctame
           </Link>
         </section>
 
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
 
         <div className={Styles.logo}>
           <p>
-            For more information, click on Contact me or tap on the Email icon.
+            Para más información, haz clic en Contáctame o toca el icono de Correo electrónico.
           </p>
         </div>
       </section>

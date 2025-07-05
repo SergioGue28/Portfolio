@@ -64,10 +64,10 @@ const Certificate: React.FC = () => {
 
   return (
     <div className={Styles.container}>
-      <Tittle text="Certificates" />
+      <Tittle text="Certificados" />
 
       {loading ? (
-        <p>Loading certificates...</p>
+        <p>Cargando Certificados...</p>
       ) : (
         <div className={Styles.containerCard}>
           {displayedCertificates.map((cert, index) => (
@@ -97,7 +97,7 @@ const Certificate: React.FC = () => {
               className={Styles.buttonAggCard}
               onClick={handleOpenFormModal}
             >
-              Add Certificate
+              Añadir Certificado
             </button>
           )}
 

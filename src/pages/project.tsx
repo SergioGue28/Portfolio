@@ -43,7 +43,7 @@ const Project: React.FC = () => {
 
   return (
     <div className={Styles.container}>
-      <Title text="Projects" />
+      <Title text="Proyectos" />
       <div className={Styles.containerCard}>
         {displayedProjects.map((project, index) => (
           <ProjectCard
@@ -71,7 +71,7 @@ const Project: React.FC = () => {
               className={Styles.buttonAggCard}
               onClick={() => setIsModalOpen(true)}
             >
-              Add Project
+              Agregar proyecto
             </button>
           )}
         </div>
