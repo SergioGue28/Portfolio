@@ -160,7 +160,7 @@
     max-width: 600px;
     max-height: 500px;
   }
-  
+
   .profilePicture {
     width: 400px;
     height: 450px;
@@ -390,4 +390,61 @@
     opacity: 1;
     transform: translateX(0); /* Termina en su posición original */
   }
+}
+
+/*Secction about tecnologies know myself*/
+
+/* Contenedor principal de las tecnologías */
+.technologiesContainer {
+  margin-top: 20px;
+  width: 100%;
+  padding: 2rem;
+  background-color: #031a29;
+  box-sizing: border-box;
+}
+
+/* Títulos de las categorías (Backend, Frontend, Otras) */
+.technologiesContainer h4 {
+  color: #66e55b;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 5px;
+}
+
+/* Fila de tecnologías, utiliza flexbox */
+.techRow {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente fila */
+  gap: 15px; /* Espacio entre los elementos */
+  margin-bottom: 20px;
+}
+
+/* Contenedor de cada tecnología (ícono + texto) */
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el ícono y el texto */
+  background-color: var(--color-card-bg); /* Color de fondo de la tarjeta */
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  background-color: #ffffff;
+}
+
+.techItem:hover {
+  transform: translateY(-3px); /* Efecto al pasar el mouse */
+}
+
+/* Estilo para los íconos */
+.techIcon {
+  font-size: 1.5rem;
+  color: var(--color-secondary); /* Color del ícono */
+}
+
+/* Estilo para el texto de la tecnología */
+.techItem span {
+  font-size: 1rem;
+  color: var(--color-text-light); /* Color del texto */
 }

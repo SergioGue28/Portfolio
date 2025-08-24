@@ -3,6 +3,25 @@ import Link from "next/link";
 import Styles from "../styles/Home.module.css";
 import Image from "next/image";
 import classNames from "classnames";
+import {
+  FaNodeJs,
+  FaReact,
+  FaRust,
+  FaJava,
+  FaJsSquare,
+  FaDocker,
+  FaAws,
+} from "react-icons/fa";
+import {
+  SiExpress,
+  SiActix,
+  SiHibernate,
+  SiApachemaven,
+  SiMongodb,
+  SiMysql,
+  SiAmazonecs,
+} from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
 
 interface PortfolioData {
   fullName: string;
@@ -52,7 +71,87 @@ const Home: React.FC = () => {
           </div>
 
           <div className={Styles.contex}>
-            {portfolio?.description || "Agradecemos tu paciencia. Debido a que el servidor opera en la versión gratuita de Render, puede experimentar un arranque en frío (cold start) tras 20 minutos de inactividad. Esto resulta en una carga inicial de aproximadamente 1 minuto, únicamente en el primer acceso.😅"}
+            {portfolio?.description ||
+              "Agradecemos tu paciencia. Debido a que el servidor opera en la versión gratuita de Render, puede experimentar un arranque en frío (cold start) tras 20 minutos de inactividad. Esto resulta en una carga inicial de aproximadamente 1 minuto, únicamente en el primer acceso.😅"}
+          </div>
+        </div>
+      </section>
+      <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
+        <div className={Styles.textTitle}>TECNOLOGÍAS</div>
+      </div>
+      <section>
+        <div className={Styles.technologiesContainer}>
+          <h4 className={Styles.tittleIcon}>Backend</h4>
+          <div className={Styles.techRow}>
+            <div className={Styles.techItem}>
+              {/* Usamos un ícono de ejemplo para cada tecnología */}
+              <FaNodeJs className={Styles.techIcon} />
+              <span>Node.js</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiExpress className={Styles.techIcon} />
+              <span>Express</span>
+            </div>
+            <div className={Styles.techItem}>
+              <FaRust className={Styles.techIcon} />
+              <span>Rust</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiActix className={Styles.techIcon} />
+              <span>Actix-Web</span>
+            </div>
+            <div className={Styles.techItem}>
+              <FaJava className={Styles.techIcon} />
+              <span>Java</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiHibernate className={Styles.techIcon} />
+              <span>Hibernate</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiApachemaven className={Styles.techIcon} />
+              <span>Maven</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiMongodb className={Styles.techIcon} />
+              <span>MongoDB</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiMysql className={Styles.techIcon} />
+              <span>MySQL</span>
+            </div>
+          </div>
+
+          <h4 className={Styles.tittleIcon}>Frontend</h4>
+          <div className={Styles.techRow}>
+            <div className={Styles.techItem}>
+              <FaJsSquare className={Styles.techIcon} />
+              <span>JavaScript</span>
+            </div>
+            <div className={Styles.techItem}>
+              <FaReact className={Styles.techIcon} />
+              <span>React.js</span>
+            </div>
+            <div className={Styles.techItem}>
+              <TbBrandNextjs className={Styles.techIcon} />
+              <span>Next.js</span>
+            </div>
+          </div>
+
+          <h4 className={Styles.tittleIcon}>Otras</h4>
+          <div className={Styles.techRow}>
+            <div className={Styles.techItem}>
+              <FaDocker className={Styles.techIcon} />
+              <span>Docker</span>
+            </div>
+            <div className={Styles.techItem}>
+              <FaAws className={Styles.techIcon} />
+              <span>AWS S3</span>
+            </div>
+            <div className={Styles.techItem}>
+              <SiAmazonecs className={Styles.techIcon} />
+              <span>ECS</span>
+            </div>
           </div>
         </div>
       </section>
