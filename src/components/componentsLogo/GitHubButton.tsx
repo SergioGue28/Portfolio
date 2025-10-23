@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles/components/componentsLogo/GitHubButton.module.css";
+import styles from "../../styles/components/componentsLogo/GitHubButton.module.css";
 
 const GitHubButton: React.FC = () => {
   return (

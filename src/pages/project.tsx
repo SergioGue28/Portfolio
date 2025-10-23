@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Styles from "../styles/Project.module.css";
-import Title from "./components/Title";
-import ProjectCard from "./components/Cards/ProjectCard";
-import ProjectForm from "./components/Forms/ProjectForm";
-import PaginationProject from "./components/Pagination/PaginationProject";
+import Title from "../components/Title";
+import ProjectCard from "../components/Cards/ProjectCard";
+import ProjectForm from "../components/Forms/ProjectForm";
+import PaginationProject from "../components/Pagination/PaginationProject";
 
 const Project: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

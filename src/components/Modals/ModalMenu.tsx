@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles/components/Modals/ModalMenu.module.css";
+import styles from "../../styles/components/Modals/ModalMenu.module.css";
 import { FaUserEdit, FaLock } from "react-icons/fa";
 
 interface ModalMenuProps {

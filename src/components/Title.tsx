@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "../../styles/components/Tittle.module.css";
+import Styles from "../styles/components/Tittle.module.css";
 
 interface TittleProps {
   text: string;

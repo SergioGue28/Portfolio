@@ -76,6 +76,55 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
+        <div className={Styles.textTitle}>ACERCA DE</div>
+      </div>
+
+      <section className={Styles.containerCard}>
+        <Link
+          href="./Project"
+          className={classNames(
+            Styles.card,
+            Styles.cardProject,
+            Styles.projectFadeIn
+          )}
+        >
+          <Image
+            src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
+            alt="Settings Icon"
+            width={520}
+            height={450}
+            className={classNames(Styles.imgcard, Styles.imgcardProject)}
+            priority
+          />
+          <div className={Styles.textOverlay}>
+            <h3 className={Styles.title}>Proyectos</h3>
+          </div>
+        </Link>
+
+        <Link
+          href="./Certificate"
+          className={classNames(
+            Styles.card,
+            Styles.cardCertificate,
+            Styles.certificateFadeIn
+          )}
+        >
+          <Image
+            src="/img/liam-truong-htpU_wGEcW0-unsplash.jpg"
+            alt="Certificates"
+            width={520}
+            height={450}
+            className={classNames(Styles.imgcard, Styles.imgcardCertificate)}
+            priority
+          />
+          <div className={Styles.textOverlay}>
+            <h3 className={Styles.title}>Certificados</h3>
+          </div>
+        </Link>
+      </section>
+
       <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
         <div className={Styles.textTitle}>TECNOLOGÍAS</div>
       </div>
@@ -154,54 +203,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
-        <div className={Styles.textTitle}>ACERCA DE</div>
-      </div>
-
-      <section className={Styles.containerCard}>
-        <Link
-          href="./Project"
-          className={classNames(
-            Styles.card,
-            Styles.cardProject,
-            Styles.projectFadeIn
-          )}
-        >
-          <Image
-            src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
-            alt="Settings Icon"
-            width={520}
-            height={450}
-            className={classNames(Styles.imgcard, Styles.imgcardProject)}
-            priority
-          />
-          <div className={Styles.textOverlay}>
-            <h3 className={Styles.title}>Proyectos</h3>
-          </div>
-        </Link>
-
-        <Link
-          href="./Certificate"
-          className={classNames(
-            Styles.card,
-            Styles.cardCertificate,
-            Styles.certificateFadeIn
-          )}
-        >
-          <Image
-            src="/img/liam-truong-htpU_wGEcW0-unsplash.jpg"
-            alt="Certificates"
-            width={520}
-            height={450}
-            className={classNames(Styles.imgcard, Styles.imgcardCertificate)}
-            priority
-          />
-          <div className={Styles.textOverlay}>
-            <h3 className={Styles.title}>Certificados</h3>
-          </div>
-        </Link>
       </section>
     </nav>
   );

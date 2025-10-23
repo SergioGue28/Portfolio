@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../styles/Certificate.module.css";
-import CertificateCard from "./components/Cards/CertificateCard";
-import CertificateForm from "./components/Forms/CertificateForm";
-import PaginationProject from "./components/Pagination/PaginationProject";
-import Tittle from "./components/Title";
-import CertificateModal from "./components/Modals/CertificateModal";
+import CertificateCard from "../components/Cards/CertificateCard";
+import CertificateForm from "../components/Forms/CertificateForm";
+import PaginationProject from "../components/Pagination/PaginationProject";
+import Tittle from "../components/Title";
+import CertificateModal from "../components/Modals/CertificateModal";
 
 const Certificate: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);

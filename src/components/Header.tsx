@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Styles from "../../styles/components/Header.module.css";
+import Styles from "../styles/components/Header.module.css";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";

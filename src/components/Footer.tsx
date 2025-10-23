@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "../../styles/components/Footer.module.css";
+import Styles from "../styles/components/Footer.module.css";
 import classNames from "classnames";
 import Link from "next/link";
 import GitHubButton from "./componentsLogo/GitHubButton";

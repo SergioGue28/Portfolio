@@ -1,4 +1,4 @@
-import styles from "../../../styles/components/componentsLogo/GmailButton.module.css";
+import styles from "../../styles/components/componentsLogo/GmailButton.module.css";
 import React, { useEffect, useState } from "react";
 
 const GmailButton: React.FC = () => {

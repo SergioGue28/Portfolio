@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles/components/componentsLogo/LinkedInButton.module.css";
+import styles from "../../styles/components/componentsLogo/LinkedInButton.module.css";
 
 const LinkedInButton: React.FC = () => {
   return (

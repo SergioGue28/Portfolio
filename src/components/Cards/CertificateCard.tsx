@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "../../../styles/components/cards/CertificateCard.module.css";
+import styles from "../../styles/components/cards/CertificateCard.module.css";
 
 interface CertificateCardProps {
   name: string;

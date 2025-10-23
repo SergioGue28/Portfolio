@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "../../../styles/components/Forms/ProjectForm.module.css";
+import Styles from "../../styles/components/Forms/ProjectForm.module.css";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 

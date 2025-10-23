@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "../../../styles/components/Forms/UpdateInformation.module.css";
+import Styles from "../../styles/components/Forms/UpdateInformation.module.css";
 import classNames from "classnames";
 import { toast } from "react-toastify";
 
