@@ -4,19 +4,24 @@
   width: 100%;
   background-color: #151515;
 }
+
 .containerElement {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 1rem;
+  gap: 1.5rem;
 }
+
 .nameFooter {
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
   padding-top: 2rem;
   color: #66e55b;
+  font-weight: 600;
 }
+
 .ContainerSocial {
   display: inline-flex;
   flex-direction: row;
@@ -25,16 +30,36 @@
   gap: 1rem;
   font-weight: bold;
 }
+
 .buttonFooter {
-  padding: 1rem;
+  position: relative;
+  padding: 0.5rem 1rem;
   color: #ffffff;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
-.social {
-  padding: 1rem;
-  background-color: blue;
-  border-radius: 50%;
+
+/* 🔹 Línea animada debajo del texto */
+.buttonFooter::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #66e55b;
+  transition: width 0.4s ease-in-out;
 }
+
+.buttonFooter:hover::after {
+  width: 100%;
+}
+
+.buttonFooter:hover {
+  color: #66e55b;
+}
+
 .Containerline {
   display: inline-flex;
   justify-content: center;
@@ -65,7 +90,7 @@
   animation: softGlow 3s infinite alternate ease-in-out;
 }
 
-/* Animación de brillo más suave */
+/* 🔹 Animación de brillo más suave */
 @keyframes softGlow {
   0% {
     text-shadow:

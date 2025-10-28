@@ -1,0 +1,77 @@
+.tiltedCardFigure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Alerta visible solo en móviles */
+.tiltedCardMobileAlert {
+  position: absolute;
+  top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .tiltedCardMobileAlert {
+    display: block;
+  }
+
+  .tiltedCardCaption {
+    display: none;
+  }
+}
+
+/* Contenedor del efecto tilt */
+.tiltedCardInner {
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden; /* Necesario para que el border-radius funcione */
+  border-radius: 15px; /* 🔥 Aplica el borde aquí */
+}
+
+/* Imagen con borde redondeado */
+.tiltedCardImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px; /* Refuerza el borde */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Capa de superposición */
+.tiltedCardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  will-change: transform;
+  transform: translateZ(30px);
+  border-radius: 15px; /* Coincide con la imagen */
+  overflow: hidden;
+}
+
+/* Texto o etiqueta sobre la imagen */
+.tiltedCardCaption {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 4px 10px;
+  font-size: 10px;
+  color: #2d2d2d;
+  opacity: 0;
+  z-index: 3;
+}

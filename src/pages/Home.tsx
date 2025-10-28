@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Styles from "../styles/Home.module.css";
-import Image from "next/image";
-import classNames from "classnames";
+import TiltedCard from "../components/animation/animationPhoto/TiltedCard";
+import Particles from "../components/animation/animationBackground/Particles";
+import SplitText from "../components/animation/animationText/SplitText";
+import React from "react";
+import CardsSection  from "../components/animation/animationCard/CardsSection";
+
 import {
   FaNodeJs,
   FaReact,
@@ -32,174 +35,183 @@ interface PortfolioData {
 
 const Home: React.FC = () => {
   const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://portfoliobackend-aay8.onrender.com/portfolio")
-      .then((response) => response.json())
-      .then((data) => setPortfolio(data))
-      .catch((error) => console.error("Error fetching data:", error));
+    const fetchPortfolio = async () => {
+      try {
+        const response = await fetch("/api/portfolio/getPortfolio");
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        setPortfolio(data);
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPortfolio();
   }, []);
 
   return (
     <nav className={Styles.nav}>
-      <section className={classNames(Styles.home, Styles.fadeIn)}>
-        <div className={classNames(Styles.photo, Styles.fadeIn)}>
-          {portfolio?.photo ? (
-            <Image
-              src={portfolio.photo}
-              alt="Foto de perfil"
-              width={350}
-              height={400}
-              className={classNames(Styles.profilePicture, Styles.fadeIn)}
-              priority
-            />
+      {/* Fondo animado */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <Particles
+          particleColors={["#ffffff", "#000000"]}
+          particleCount={50}
+          particleSpread={8}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+      <div className={Styles.space}></div>
+
+      <section className={Styles.home}>
+        <div className={Styles.photo}>
+          {loading ? (
+            <p className={Styles.contex}>Cargando imagen...</p>
           ) : (
-            <p className={Styles.contex}>Loading image...</p>
+            <TiltedCard
+              imageSrc={
+                portfolio?.photo?.startsWith("http")
+                  ? portfolio.photo
+                  : "/img/fallback.jpg"
+              }
+              altText="Foto de perfil"
+              containerHeight="400px"
+              containerWidth="350px"
+              imageHeight="400px"
+              imageWidth="350px"
+              scaleOnHover={1.15}
+              rotateAmplitude={14}
+              showMobileWarning={false}
+              showTooltip={false}
+            />
           )}
         </div>
 
-        <div className={classNames(Styles.text, Styles.fadeIn)}>
+        <div className={Styles.text}>
           <div className={Styles.contexTitle}>
-            <span className={Styles.textTitleOcupationColor}>Hola soy </span>
-            <span className={Styles.textTitleOcupationName}>
-              {portfolio?.fullName || "Cargando datos..."}
-            </span>
-            <br />
-            <span className={Styles.textTitleOcupationName}>
-              {portfolio?.position || "Cargando... ⏳⏳"}
-            </span>
+            <SplitText
+              text={portfolio?.fullName || "Cargando datos..."}
+              className={Styles.textTitleOcupationName}
+              delay={200}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="center"
+            />
+
+            <SplitText
+              text={portfolio?.position || "Cargando... ⏳"}
+              className={Styles.textTitleOcupationName}
+              delay={300}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="center"
+            />
           </div>
 
           <div className={Styles.contex}>
-            {portfolio?.description ||
-              "Agradecemos tu paciencia. Debido a que el servidor opera en la versión gratuita de Render, puede experimentar un arranque en frío (cold start) tras 20 minutos de inactividad. Esto resulta en una carga inicial de aproximadamente 1 minuto, únicamente en el primer acceso.😅"}
+            <SplitText
+              text={portfolio?.description || "Cargando... ⏳"}
+              className={Styles.animatedText}
+              delay={10}
+              duration={0.6}
+              ease="power3.out"
+              splitType="words"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="left"
+            />
           </div>
         </div>
       </section>
 
-      <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
+      <div id="about" className={Styles.tittleCard}>
         <div className={Styles.textTitle}>ACERCA DE</div>
       </div>
 
-      <section className={Styles.containerCard}>
-        <Link
-          href="./Project"
-          className={classNames(
-            Styles.card,
-            Styles.cardProject,
-            Styles.projectFadeIn
-          )}
-        >
-          <Image
-            src="/img/nubelson-fernandes-UcYBL5V0xWQ-unsplash.jpg"
-            alt="Settings Icon"
-            width={520}
-            height={450}
-            className={classNames(Styles.imgcard, Styles.imgcardProject)}
-            priority
-          />
-          <div className={Styles.textOverlay}>
-            <h3 className={Styles.title}>Proyectos</h3>
-          </div>
-        </Link>
+      <CardsSection />
 
-        <Link
-          href="./Certificate"
-          className={classNames(
-            Styles.card,
-            Styles.cardCertificate,
-            Styles.certificateFadeIn
-          )}
-        >
-          <Image
-            src="/img/liam-truong-htpU_wGEcW0-unsplash.jpg"
-            alt="Certificates"
-            width={520}
-            height={450}
-            className={classNames(Styles.imgcard, Styles.imgcardCertificate)}
-            priority
-          />
-          <div className={Styles.textOverlay}>
-            <h3 className={Styles.title}>Certificados</h3>
-          </div>
-        </Link>
-      </section>
-
-      <div id="about" className={classNames(Styles.tittleCard, Styles.fadeIn)}>
+      <div id="tech" className={Styles.tittleCard}>
         <div className={Styles.textTitle}>TECNOLOGÍAS</div>
       </div>
+
       <section>
         <div className={Styles.technologiesContainer}>
-          <h4 className={Styles.tittleIcon}>Backend</h4>
+          <h4>Backend</h4>
           <div className={Styles.techRow}>
             <div className={Styles.techItem}>
-              {/* Usamos un ícono de ejemplo para cada tecnología */}
-              <FaNodeJs className={Styles.techIcon} />
-              <span>Node.js</span>
+              <FaNodeJs /> <span>Node.js</span>
             </div>
             <div className={Styles.techItem}>
-              <SiExpress className={Styles.techIcon} />
-              <span>Express</span>
+              <SiExpress /> <span>Express</span>
             </div>
             <div className={Styles.techItem}>
-              <FaRust className={Styles.techIcon} />
-              <span>Rust</span>
+              <FaRust /> <span>Rust</span>
             </div>
             <div className={Styles.techItem}>
-              <SiActix className={Styles.techIcon} />
-              <span>Actix-Web</span>
+              <SiActix /> <span>Actix-Web</span>
             </div>
             <div className={Styles.techItem}>
-              <FaJava className={Styles.techIcon} />
-              <span>Java</span>
+              <FaJava /> <span>Java</span>
             </div>
             <div className={Styles.techItem}>
-              <SiHibernate className={Styles.techIcon} />
-              <span>Hibernate</span>
+              <SiHibernate /> <span>Hibernate</span>
             </div>
             <div className={Styles.techItem}>
-              <SiApachemaven className={Styles.techIcon} />
-              <span>Maven</span>
+              <SiApachemaven /> <span>Maven</span>
             </div>
             <div className={Styles.techItem}>
-              <SiMongodb className={Styles.techIcon} />
-              <span>MongoDB</span>
+              <SiMongodb /> <span>MongoDB</span>
             </div>
             <div className={Styles.techItem}>
-              <SiMysql className={Styles.techIcon} />
-              <span>MySQL</span>
+              <SiMysql /> <span>MySQL</span>
             </div>
           </div>
 
-          <h4 className={Styles.tittleIcon}>Frontend</h4>
+          <h4>Frontend</h4>
           <div className={Styles.techRow}>
             <div className={Styles.techItem}>
-              <FaJsSquare className={Styles.techIcon} />
-              <span>JavaScript</span>
+              <FaJsSquare /> <span>JavaScript</span>
             </div>
             <div className={Styles.techItem}>
-              <FaReact className={Styles.techIcon} />
-              <span>React.js</span>
+              <FaReact /> <span>React.js</span>
             </div>
             <div className={Styles.techItem}>
-              <TbBrandNextjs className={Styles.techIcon} />
-              <span>Next.js</span>
+              <TbBrandNextjs /> <span>Next.js</span>
             </div>
           </div>
 
-          <h4 className={Styles.tittleIcon}>Otras</h4>
+          <h4>Otras</h4>
           <div className={Styles.techRow}>
             <div className={Styles.techItem}>
-              <FaDocker className={Styles.techIcon} />
-              <span>Docker</span>
+              <FaDocker /> <span>Docker</span>
             </div>
             <div className={Styles.techItem}>
-              <FaAws className={Styles.techIcon} />
-              <span>AWS S3</span>
+              <FaAws /> <span>AWS S3</span>
             </div>
             <div className={Styles.techItem}>
-              <SiAmazonecs className={Styles.techIcon} />
-              <span>ECS</span>
+              <SiAmazonecs /> <span>ECS</span>
             </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
 import React from "react";
-import Styles from "../styles/components/Footer.module.css";
+import Styles from "../../styles/components/Footer.module.css";
 import classNames from "classnames";
 import Link from "next/link";
-import GitHubButton from "./componentsLogo/GitHubButton";
-import LinkedInButton from "./componentsLogo/LinkedInButton";
-import WhatsAppButton from "./componentsLogo/GmailButton";
+import GitHubButton from "../componentsLogo/GitHubButton";
+import LinkedInButton from "../componentsLogo/LinkedInButton";
+import WhatsAppButton from "../componentsLogo/GmailButton";
 
 const Footer: React.FC = () => {
   return (
@@ -19,12 +19,6 @@ const Footer: React.FC = () => {
           >
             Inicio
           </Link>
-          {/* <Link
-            href="/Resume"
-            className={classNames(Styles.buttonFooter, Styles.resume)}
-          >
-            Resume
-          </Link> */}
           <Link
             href="/ContactMe"
             className={classNames(Styles.buttonFooter, Styles.contactUs)}

@@ -1,8 +1,8 @@
 import React from "react";
-import { montserrat } from "../ui/fonts";
-import Header from "../components/Header";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import { montserrat } from "../../ui/fonts";
+import Header from "./Header";
+import Nav from "./Nav";
+import Footer from "./Footer";
 
 interface RootLayoutProps {
   children: React.ReactNode;

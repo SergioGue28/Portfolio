@@ -12,20 +12,35 @@ const Certificate: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Estado para token
-  const [token, setToken] = useState<string | null>(null);
+  // 🔹 Autenticación
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Estado para el certificado seleccionado
   const [selectedCertificate, setSelectedCertificate] = useState<{
     name: string;
     imageUrl: string;
   } | null>(null);
 
+  // ✅ Verificar autenticación por cookies
   useEffect(() => {
-    const savedToken = localStorage.getItem("token");
-    setToken(savedToken);
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/auth/me", {
+          method: "GET",
+          credentials: "include", // necesario para enviar cookies HttpOnly
+        });
+        const data = await res.json();
+        setIsAuthenticated(data.authenticated);
+      } catch (error) {
+        console.error("Error verificando autenticación:", error);
+        setIsAuthenticated(false);
+      }
+    };
+    checkAuth();
+  }, []);
 
-    fetch("https://portfoliobackend-aay8.onrender.com/certificate")
+  // ✅ Obtener certificados
+  useEffect(() => {
+    fetch("api/certificate/getCertificates")
       .then((response) => response.json())
       .then((data) => {
         setCertificates(data);
@@ -44,14 +59,9 @@ const Certificate: React.FC = () => {
     setSelectedCertificate(certificate);
   };
 
-  const handleCloseModal = () => {
-    setSelectedCertificate(null);
-  };
+  const handleCloseModal = () => setSelectedCertificate(null);
 
-  const handleAddCertificate = (newCertificate: {
-    name: string;
-    imageUrl: string;
-  }) => {
+  const handleAddCertificate = (newCertificate: { name: string; imageUrl: string }) => {
     setCertificates([...certificates, newCertificate]);
   };
 
@@ -90,23 +100,23 @@ const Certificate: React.FC = () => {
           />
         </div>
 
-        <div className={Styles.containerButton}>
-          {/* Mostrar botón solo si token existe */}
-          {token && (
+        {/* ✅ Mostrar botón solo si el usuario está autenticado */}
+        {isAuthenticated && (
+          <div className={Styles.containerButton}>
             <button
               className={Styles.buttonAggCard}
               onClick={handleOpenFormModal}
             >
               Añadir Certificado
             </button>
-          )}
 
-          <CertificateForm
-            isOpen={isModalOpen}
-            onClose={handleCloseFormModal}
-            onAddCertificate={handleAddCertificate}
-          />
-        </div>
+            <CertificateForm
+              isOpen={isModalOpen}
+              onClose={handleCloseFormModal}
+              onAddCertificate={handleAddCertificate}
+            />
+          </div>
+        )}
       </div>
 
       {selectedCertificate && (

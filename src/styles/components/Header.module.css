@@ -1,61 +1,80 @@
 .header {
+  position: fixed;
+  inset: 0; /* reemplaza top/right/bottom/left */
+  height: 90px;
+  background-color: #031a29;
   display: flex;
-  margin: 0;
-  padding: 0;
-  box-shadow: rgba(0, 0, 0, 0.1);
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 7.7px;
 }
 
-/* Contiene todos los contenedores del header */
 .containerHeader {
   display: flex;
   width: 100%;
   height: 90px;
-  padding: 0;
-  background-color: #031a29;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
-/* Son los tres contenedores que tiene el header */
 .contentHeader {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
-  max-width: 33%;
-  min-width: 20%;
+  flex: 1 1 0;
+  min-width: 0;
   height: 100%;
-  padding: 0 20px;
+  padding: 0;
   background-color: #031a29;
+}
+
+.containerSocial,
+.containerSearch,
+.containerProfile {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex: 1;
 }
 
 .containerSearch {
+  display: flex;
   gap: 10px;
+  align-items: stretch;
+  justify-content: center;
 }
 
-/* Es el contenido que tiene el contenedor central containerSearch */
 .buttonHeader {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  background-color: #031a29;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #ffffff;
+  background-color: #031a29;
   border: none;
   font-size: 1rem;
-  transition: transform 0.5s ease;
+  transition: all 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .buttonHeader:hover {
   box-shadow: inset 0px -3px 0px 0px #66e55b;
-}
-
-.chat {
-  transition: transform 0.5s ease;
-}
-
-.chat:hover {
-  transform: scale(1.1);
 }
 
 .containerSocial {
@@ -69,7 +88,7 @@
 
 .profilePicture {
   border-radius: 50%;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
@@ -81,6 +100,19 @@
   border-radius: 50%;
   opacity: 0.4;
   cursor: default;
+}
+
+.btnProfile {
+  color: #ffffff;
+  background-color: #031a29;
+  border: none;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.btnProfile:hover {
+  transform: scale(1.05);
 }
 
 /* Tooltip styles */
@@ -113,69 +145,43 @@
   opacity: 1;
 }
 
-.btnProfile {
-  color: #ffffff;
-  background-color: #031a29;
-  box-sizing: border-box;
-  border: none;
-  transition: transform 0.5s ease;
-  font-size: 1rem;
-}
+/* Responsive */
 
-.btnProfile:hover {
-  transform: scale(1.1);
-}
+/* ================================================= */
+/* MEDIA QUERIES PARA MÓVIL Y TABLET */
+/* ================================================= */
 
-@media (min-width: 800px) and (max-width: 1000px) {
-  .buttonHeader {
+@media (max-width: 800px) {
+  .containerSearch {
+    display: none;
+  }
+
+  .contentHeader {
+    max-width: 50%;
+  }
+
+  .buttonHeader,
+  .btnProfile {
     font-size: 0.9rem;
-    width: 86px;
   }
 }
 
-@media (min-width: 700px) and (max-width: 800px) {
-  .buttonHeader {
-    font-size: 0.8rem;
-    width: 86px;
-  }
-}
-
-@media (min-width: 400px) and (max-width: 700px) {
-  .containerHeader {
-    height: 60px;
-    padding: 0 1rem;
-  }
-
-  .containerSearch {
+@media (max-width: 400px) {
+  .containerSocial {
     display: none;
   }
 
+  .containerProfile {
+    flex-grow: 1;
+    justify-content: flex-end;
+    max-width: none;
+  }
+
   .btnProfile {
-    font-size: 14px;
+    font-size: 0.75rem;
   }
 
-  .contentHeader {
-    max-width: 50%;
-    padding: 0;
-  }
-}
-
-@media (width < 400px) {
   .containerHeader {
-    height: 60px;
-    padding: 0 1rem;
-  }
-
-  .containerSearch {
-    display: none;
-  }
-
-  .btnProfile {
-    font-size: 13px;
-  }
-
-  .contentHeader {
-    max-width: 50%;
-    padding: 0;
+    padding: 0 0.5rem;
   }
 }

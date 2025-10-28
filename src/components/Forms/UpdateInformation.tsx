@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Styles from "../../styles/components/Forms/UpdateInformation.module.css";
 import classNames from "classnames";
 import { toast } from "react-toastify";
@@ -20,17 +20,29 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Cargar datos actuales del portfolio al abrir el modal
+  useEffect(() => {
+    if (isOpen) {
+      const fetchPortfolio = async () => {
+        try {
+          const res = await fetch("/api/portfolio/portfolio");
+          if (!res.ok) throw new Error("Failed to fetch portfolio data");
+          const data = await res.json();
+          setName(data.fullName || "");
+          setPosition(data.position || "");
+          setDescription(data.description || "");
+          setEmail(data.email || "");
+          setPhone(data.phone || "");
+        } catch (err) {
+          toast.error("Error fetching portfolio data", { autoClose: 5000 });
+        }
+      };
+      fetchPortfolio();
+    }
+  }, [isOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      toast.error("You must be logged in.", { autoClose: 3000 });
-      setLoading(false);
-      onClose();
-      return;
-    }
-
     setLoading(true);
 
     const formData = new FormData();
@@ -39,51 +51,30 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({
     formData.append("description", description);
     formData.append("email", email);
     formData.append("phone", phone);
-    if (profilePicture) {
-      formData.append("photo", profilePicture);
-    }
+    if (profilePicture) formData.append("photo", profilePicture);
 
     try {
-      const response = await fetch(
-        "https://portfoliobackend-aay8.onrender.com/portfolio/updateInformation",
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        }
-      );
-
-      if (response.status === 401 || response.status === 403) {
-        toast.error("Authentication required. Redirecting to login...", {
-          autoClose: 3000,
-        });
-        setLoading(false);
-        onClose();
-
-        return;
-      }
+      const response = await fetch("/api/portfolio/updatePortfolio", {
+        method: "PUT",
+        body: formData,
+      });
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || "Failed to update portfolio.");
       }
 
-      const updatedData = await response.json();
       toast.success("Information updated successfully!", { autoClose: 3000 });
-      console.log("Portfolio updated:", updatedData);
       onClose();
     } catch (error: any) {
       toast.error(`Error: ${error.message}`, { autoClose: 5000 });
-      console.error("Error updating portfolio:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
+    if (e.target.files && e.target.files[0]) {
       setProfilePicture(e.target.files[0]);
     }
   };
@@ -192,7 +183,7 @@ const UpdateInformation: React.FC<UpdateInformationProps> = ({
                 disabled={loading}
               ></textarea>
               <small className={Styles.charCount}>
-                {description.length + "/1000"}
+                {description.length}/1000
               </small>
             </div>
           </div>

@@ -27,14 +27,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     e.preventDefault();
 
     if (!name || !description || !url) {
-      toast.warning("All fields are required.");
-      return;
-    }
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      toast.error("Session expired. Please log in again.");
-      onClose();
+      toast.warning("Todos los campos son obligatorios.");
       return;
     }
 
@@ -42,32 +35,25 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     setLoading(true);
 
     try {
-      const response = await fetch("https://portfoliobackend-aay8.onrender.com/project/addProject", {
+      const response = await fetch("/api/project/addProject", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(project),
       });
 
       if (response.ok) {
-        toast.success("Project added successfully.");
+        toast.success("Proyecto agregado correctamente.");
         onAddProject(project);
-        // Limpiar campos después de agregar
         setName("");
         setDescription("");
         setUrl("");
         onClose();
-      } else if (response.status === 401) {
-        toast.error("Session expired. Please log in again.");
-        onClose();
       } else {
-        toast.error("Error adding project.");
+        toast.error("Error al agregar el proyecto.");
       }
     } catch (error) {
-      console.error("Error sending form:", error);
-      toast.error("Error connecting to the server.");
+      console.error("Error enviando el formulario:", error);
+      toast.error("Error de conexión con el servidor.");
     } finally {
       setLoading(false);
     }
@@ -128,7 +114,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
           </div>
           <div className={Styles.formGroupButton}>
             <button type="submit" className={Styles.button} disabled={loading}>
-              {loading ? "Saving..." : "Agregar proyecto"}
+              {loading ? "Guardando..." : "Agregar proyecto"}
             </button>
             <button
               type="button"

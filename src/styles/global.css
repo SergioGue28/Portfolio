@@ -1,0 +1,22 @@
+html,
+body {
+  margin: 0;
+  padding: 4px;
+  width: 100%;
+  box-sizing: border-box; /* Incluye padding y border en el ancho/alto total */
+  font-family: var(--font-body); /* Aplica Montserrat para todo el body */
+  color: var(--primary-color); /* Color de texto predeterminado */
+  background-color: var(--background-color); /* ¡Fondo blanco! */
+  line-height: 1.6; /* Altura de línea para mejor legibilidad */
+  -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para Webkit */
+  -moz-osx-font-smoothing: grayscale; /* Suavizado de fuentes para Firefox */
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+
+/* Estilos para enlaces globales (si no están ya en componentes específicos) */
+a {
+  color: inherit; /* Hereda el color de texto del padre */
+  text-decoration: none; /* Elimina el subrayado por defecto */
+}

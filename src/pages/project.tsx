@@ -11,18 +11,41 @@ const Project: React.FC = () => {
     { name: string; description: string; url: string }[]
   >([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
-  // Estado para el token
-  const [token, setToken] = useState<string | null>(null);
+  // 🔹 Estado para autenticación
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // ✅ Verificar autenticación con cookies
   useEffect(() => {
-    const savedToken = localStorage.getItem("token");
-    setToken(savedToken);
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/auth/me", {
+          method: "GET",
+          credentials: "include", // incluye cookies HttpOnly
+        });
+        const data = await res.json();
+        setIsAuthenticated(data.authenticated);
+      } catch (error) {
+        console.error("Error verificando autenticación:", error);
+        setIsAuthenticated(false);
+      }
+    };
+    checkAuth();
+  }, []);
 
-    fetch("https://portfoliobackend-aay8.onrender.com/project")
+  // ✅ Obtener proyectos
+  useEffect(() => {
+    fetch("/api/project/getProject")
       .then((response) => response.json())
-      .then((data) => setProjects(data))
-      .catch((error) => console.error("Error fetching projects:", error));
+      .then((data) => {
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching projects:", error);
+        setLoading(false);
+      });
   }, []);
 
   const handleAddProject = (project: {
@@ -44,16 +67,21 @@ const Project: React.FC = () => {
   return (
     <div className={Styles.container}>
       <Title text="Proyectos" />
-      <div className={Styles.containerCard}>
-        {displayedProjects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            name={project.name}
-            description={project.description}
-            url={project.url}
-          />
-        ))}
-      </div>
+
+      {loading ? (
+        <p>Cargando proyectos...</p>
+      ) : (
+        <div className={Styles.containerCard}>
+          {displayedProjects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              name={project.name}
+              description={project.description}
+              url={project.url}
+            />
+          ))}
+        </div>
+      )}
 
       <div className={Styles.containerButtonAggCard}>
         <div className={Styles.containerPagination}>
@@ -64,19 +92,20 @@ const Project: React.FC = () => {
           />
         </div>
 
-        <div className={Styles.containerButton}>
-          {/* Mostrar botón solo si token existe */}
-          {token && (
+        {/* ✅ Mostrar botón solo si el usuario está autenticado */}
+        {isAuthenticated && (
+          <div className={Styles.containerButton}>
             <button
               className={Styles.buttonAggCard}
               onClick={() => setIsModalOpen(true)}
             >
               Agregar proyecto
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
+      {/* Modal para formulario de nuevo proyecto */}
       {isModalOpen && (
         <ProjectForm
           isOpen={isModalOpen}

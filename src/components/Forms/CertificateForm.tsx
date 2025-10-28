@@ -26,13 +26,6 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
       return;
     }
 
-    const token = localStorage.getItem("token");
-    if (!token) {
-      toast.error("Session expired. Please log in again.");
-      onClose();
-      return;
-    }
-
     const formData = new FormData();
     formData.append("name", name);
     formData.append("image", image);
@@ -41,12 +34,9 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
     try {
       const response = await fetch(
-        "https://portfoliobackend-aay8.onrender.com/certificate/addCertificate",
+        "api/certificate/addCertificate",
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
           body: formData,
         }
       );
@@ -55,9 +45,6 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
         const result = await response.json();
         toast.success("Certificate added successfully.");
         onAddCertificate({ name, imageUrl: result.imageUrl });
-        onClose();
-      } else if (response.status === 401) {
-        toast.error("Session expired. Please log in again.");
         onClose();
       } else {
         toast.error("Error uploading certificate.");
