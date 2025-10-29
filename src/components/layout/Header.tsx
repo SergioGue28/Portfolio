@@ -67,7 +67,7 @@ const Header: React.FC = () => {
     try {
       await fetch("/api/auth/logout", {
         method: "POST",
-        credentials: "include", // 👈 importante para eliminar cookie del servidor
+        credentials: "include", // importante para eliminar cookie del servidor
       });
 
       setIsAuthenticated(false);
