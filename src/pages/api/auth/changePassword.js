@@ -1,5 +1,5 @@
 import dbConnect from "../../../lib/mongodb";
-import UserAdmin from "../../../models/UserAdmin";
+import UserAdmin from "../../../models/PortfolioModel";
 import bcrypt from "bcryptjs";
 import { withAuth } from "../../../lib/auth";
 

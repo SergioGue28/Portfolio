@@ -12,7 +12,7 @@
     box-shadow 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;
   box-sizing: border-box;
-  overflow: hidden;
+
   margin: 7.7px;
 }
 
@@ -115,41 +115,7 @@
   transform: scale(1.05);
 }
 
-/* Tooltip styles */
-.tooltipWrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltipText {
-  visibility: hidden;
-  width: 220px;
-  background-color: rgba(3, 26, 41, 0.9);
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 6px 10px;
-  position: absolute;
-  z-index: 1;
-  bottom: -40px;
-  left: -200px;
-  transform: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-size: 0.75rem;
-  pointer-events: none;
-}
-
-.tooltipWrapper:hover .tooltipText {
-  visibility: visible;
-  opacity: 1;
-}
-
 /* Responsive */
-
-/* ================================================= */
-/* MEDIA QUERIES PARA MÓVIL Y TABLET */
-/* ================================================= */
 
 @media (max-width: 800px) {
   .containerSearch {

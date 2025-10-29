@@ -11,6 +11,7 @@ import { scroller } from "react-scroll";
 import GitHubButton from "../componentsLogo/GitHubButton";
 import LinkedInButton from "../componentsLogo/LinkedInButton";
 import GmailButton from "../componentsLogo/GmailButton";
+import WhatsAppButton from "../componentsLogo/WhatsAppButton";
 
 const Header: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -62,9 +63,19 @@ const Header: React.FC = () => {
   const handleClosePasswordModal = () => setPasswordModalOpen(false);
 
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
-  const handleLogout = () => {
-    setMenuOpen(false);
-    router.push("/");
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include", // 👈 importante para eliminar cookie del servidor
+      });
+
+      setIsAuthenticated(false);
+      setMenuOpen(false);
+      router.push("/");
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   const handleAboutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -90,6 +101,7 @@ const Header: React.FC = () => {
           <GmailButton />
           <LinkedInButton />
           <GitHubButton />
+          <WhatsAppButton />
         </div>
 
         <div
@@ -110,7 +122,7 @@ const Header: React.FC = () => {
           className={classNames(Styles.contentHeader, Styles.containerProfile)}
         >
           <button className={Styles.btnProfile}>Sergio Guerra</button>
-          {isAuthenticated ? (
+          {isAuthenticated && (
             <>
               <Image
                 src="/img/menu.png"
@@ -132,20 +144,6 @@ const Header: React.FC = () => {
                 />
               )}
             </>
-          ) : (
-            <div className={Styles.tooltipWrapper}>
-              <Image
-                src="/img/menu.png"
-                alt="Sin permisos"
-                width={30}
-                height={30}
-                className={Styles.profilePictureDisabled}
-                priority
-              />
-              <span className={Styles.tooltipText}>
-                Only the administrator has permission to edit the information.
-              </span>
-            </div>
           )}
         </div>
       </section>

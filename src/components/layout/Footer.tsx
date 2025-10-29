@@ -4,7 +4,8 @@ import classNames from "classnames";
 import Link from "next/link";
 import GitHubButton from "../componentsLogo/GitHubButton";
 import LinkedInButton from "../componentsLogo/LinkedInButton";
-import WhatsAppButton from "../componentsLogo/GmailButton";
+import GmailButton from "../componentsLogo/GmailButton";
+import WhatsAppButton from "../componentsLogo/WhatsAppButton";
 
 const Footer: React.FC = () => {
   return (
@@ -28,9 +29,10 @@ const Footer: React.FC = () => {
         </section>
 
         <section className={Styles.ContainerSocial}>
-          <WhatsAppButton />
+          <GmailButton />
           <LinkedInButton />
           <GitHubButton />
+          <WhatsAppButton />
         </section>
 
         <section className={Styles.Containerline}>

@@ -7,6 +7,7 @@ const PortfolioSchema = new mongoose.Schema(
     position: { type: String, required: true, trim: true },
     description: { type: String, required: true },
     email: { type: String, required: true, lowercase: true, trim: true },
+    password: { type: String, required: true, select: false },
     phone: { type: String, required: true, trim: true },
   },
   { 

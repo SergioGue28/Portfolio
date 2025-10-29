@@ -11,7 +11,7 @@ const ContactMe: React.FC = () => {
   });
 
   useEffect(() => {
-    fetch("https://portfoliobackend-aay8.onrender.com/portfolio")
+    fetch("/api/portfolio/getPortfolio")
       .then((response) => response.json())
       .then((data) => setContactInfo(data))
       .catch((error) => console.error("Error fetching contact info:", error));
