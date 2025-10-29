@@ -88,7 +88,7 @@ const Home: React.FC = () => {
               imageSrc={
                 portfolio?.photo?.startsWith("http")
                   ? portfolio.photo
-                  : "/img/fallback.jpg"
+                  : "/img/3.jpg"
               }
               altText="Foto de perfil"
               containerHeight="400px"
