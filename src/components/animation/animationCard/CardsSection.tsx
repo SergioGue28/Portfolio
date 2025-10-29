@@ -41,7 +41,7 @@ const CardsSection: React.FC = () => {
         <motion.div
           className={`${styles.card} ${styles.card2}`}
           style={{ y: yCertificate, opacity: opacityCertificate, scale: scaleCertificate }}
-          onClick={() => router.push("./Certificate")}
+          onClick={() => router.push("/Certificate")}
         >
           <h2 className={styles.title}>Certificados</h2>
           <p className={styles.description}>
