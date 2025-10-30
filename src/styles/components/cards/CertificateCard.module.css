@@ -65,6 +65,28 @@
   color: #0056b3;
 }
 
+.deleteButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 0, 0, 1);
+}
+
 @media (width >= 600px) and (width <= 1240px) {
   .card {
     width: 294px;

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 interface AddCertificateFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onAddCertificate: (certificate: { name: string; imageUrl: string }) => void;
+  onAddCertificate: (certificate: { id: string; name: string; imageUrl: string }) => void;
 }
 
 const CertificateForm: React.FC<AddCertificateFormProps> = ({
@@ -22,7 +22,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
     e.preventDefault();
 
     if (!name || !image) {
-      toast.warning("Please enter your name and select an image.");
+      toast.warning("Por favor, ingresa el nombre y selecciona una imagen.");
       return;
     }
 
@@ -33,25 +33,26 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
     setLoading(true);
 
     try {
-      const response = await fetch(
-        "api/certificate/addCertificate",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/certificate/addCertificate", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const result = await response.json();
-        toast.success("Certificate added successfully.");
-        onAddCertificate({ name, imageUrl: result.imageUrl });
+        toast.success("Certificado añadido exitosamente.");
+        onAddCertificate({
+          id: result.id || Date.now().toString(),
+          name,
+          imageUrl: result.imageUrl,
+        });
         onClose();
       } else {
-        toast.error("Error uploading certificate.");
+        toast.error("Error al subir el certificado.");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Error connecting to the server.");
+      toast.error("Error al conectar con el servidor.");
     } finally {
       setLoading(false);
     }
@@ -107,7 +108,7 @@ const CertificateForm: React.FC<AddCertificateFormProps> = ({
 
           <div className={Styles.formGroupButton}>
             <button type="submit" className={Styles.button} disabled={loading}>
-              {loading ? "Saving..." : "Añadir Certificado"}
+              {loading ? "Guardando..." : "Añadir Certificado"}
             </button>
             <button
               type="button"

@@ -9,7 +9,10 @@ async function connectMongo() {
   }
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   await connectMongo();
 
   if (req.method !== "GET") {
@@ -21,6 +24,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json(certificates);
   } catch (error) {
     console.error("❌ GET Certificates error:", error);
-    return res.status(500).json({ message: "Internal server error", error: (error as Error).message });
+    return res
+      .status(500)
+      .json({
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
   }
 }

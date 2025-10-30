@@ -5,10 +5,13 @@ import CertificateForm from "../components/Forms/CertificateForm";
 import PaginationProject from "../components/Pagination/PaginationProject";
 import Tittle from "../components/Title";
 import CertificateModal from "../components/Modals/CertificateModal";
+import { toast } from "react-toastify";
 
 const Certificate: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [certificates, setCertificates] = useState<any[]>([]);
+  const [certificates, setCertificates] = useState<
+    { id: string; name: string; imageUrl: string }[]
+  >([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,7 +29,7 @@ const Certificate: React.FC = () => {
       try {
         const res = await fetch("/api/auth/me", {
           method: "GET",
-          credentials: "include", // necesario para enviar cookies HttpOnly
+          credentials: "include",
         });
         const data = await res.json();
         setIsAuthenticated(data.authenticated);
@@ -40,10 +43,16 @@ const Certificate: React.FC = () => {
 
   // ✅ Obtener certificados
   useEffect(() => {
-    fetch("api/certificate/getCertificates")
+    fetch("/api/certificate/getCertificates")
       .then((response) => response.json())
       .then((data) => {
-        setCertificates(data);
+        // 🔹 Mapea los datos para que cada certificado tenga un campo "id"
+        const mapped = data.map((cert: any) => ({
+          id: cert._id, // <- aquí transformamos
+          name: cert.name,
+          imageUrl: cert.imageUrl,
+        }));
+        setCertificates(mapped);
         setLoading(false);
       })
       .catch((error) => {
@@ -61,9 +70,35 @@ const Certificate: React.FC = () => {
 
   const handleCloseModal = () => setSelectedCertificate(null);
 
-  const handleAddCertificate = (newCertificate: { name: string; imageUrl: string }) => {
-    setCertificates([...certificates, newCertificate]);
+  const handleAddCertificate = (newCertificate: {
+    id: string;
+    name: string;
+    imageUrl: string;
+  }) => {
+    setCertificates((prev) => [...prev, newCertificate]);
   };
+
+  // ✅ Eliminar certificado
+  const handleDeleteCertificate = async (id: string) => {
+  if (!confirm("¿Seguro que quieres eliminar este certificado?")) return;
+
+  try {
+    const res = await fetch(`/api/certificate/deleteCertificate/${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      toast.success("Certificado eliminado correctamente.");
+      setCertificates((prev) => prev.filter((c) => c.id !== id));
+    } else {
+      toast.error("Error al eliminar el certificado.");
+    }
+  } catch (error) {
+    console.error("Error eliminando certificado:", error);
+    toast.error("Error de conexión con el servidor.");
+  }
+};
+
 
   const ITEMS_PER_PAGE = 6;
   const totalPages = Math.ceil(certificates.length / ITEMS_PER_PAGE);
@@ -80,12 +115,15 @@ const Certificate: React.FC = () => {
         <p>Cargando Certificados...</p>
       ) : (
         <div className={Styles.containerCard}>
-          {displayedCertificates.map((cert, index) => (
+          {displayedCertificates.map((cert) => (
             <CertificateCard
-              key={index}
+              key={cert.id}
+              id={cert.id}
               name={cert.name}
               imageUrl={cert.imageUrl}
               onClick={() => handleCardClick(cert)}
+              onDelete={handleDeleteCertificate}
+              isAuthenticated={isAuthenticated}
             />
           ))}
         </div>
@@ -100,7 +138,6 @@ const Certificate: React.FC = () => {
           />
         </div>
 
-        {/* ✅ Mostrar botón solo si el usuario está autenticado */}
         {isAuthenticated && (
           <div className={Styles.containerButton}>
             <button
