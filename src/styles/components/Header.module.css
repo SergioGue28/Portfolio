@@ -117,7 +117,7 @@
 
 /* Responsive */
 
-@media (max-width: 800px) {
+@media (width < 800px) {
   .containerSearch {
     display: none;
   }
@@ -132,22 +132,26 @@
   }
 }
 
-@media (max-width: 400px) {
-  .containerSocial {
+@media (width < 420px) {
+  .containerSearch {
     display: none;
   }
 
+  .contentHeader {
+    max-width: none;
+  }
+
   .containerProfile {
-    flex-grow: 1;
+    flex: 1 1 0;
     justify-content: flex-end;
     max-width: none;
+  }
+  .containerSocial {
+    flex: 2 1 0;
   }
 
   .btnProfile {
     font-size: 0.75rem;
   }
 
-  .containerHeader {
-    padding: 0 0.5rem;
-  }
 }

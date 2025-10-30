@@ -29,9 +29,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* <-- crucial: alinea todo a la izquierda */
+  align-items: flex-start;
   width: 55%;
-  text-align: left; /* <-- asegura que las líneas comiencen a la izquierda */
+  text-align: left;
   box-sizing: border-box;
   padding: 1rem;
   margin: 0;
@@ -105,7 +105,7 @@
   background-color: #031a29;
   padding: 50px;
   gap: 3rem;
-  flex-wrap: wrap; /* para que sea responsivo */
+  flex-wrap: wrap;
 }
 
 .textOverlay {
@@ -202,7 +202,7 @@
   }
 }
 
-@media (width <= 450px) {
+@media (width > 420px) and (width <= 450px) {
   .home {
     flex-direction: column;
     justify-content: center;
@@ -219,7 +219,7 @@
     font-size: 40px;
   }
   .textTitleOcupationName {
-    font-size: 23px;
+    font-size: 21px;
   }
   .animatedText {
     font-size: 13px;
@@ -227,5 +227,36 @@
   }
   .contex {
     max-width: 400px;
+  }
+}
+
+@media (width <= 420px) {
+  .home {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .text,
+  .photo {
+    width: 100%;
+  }
+  .profilePicture {
+    width: 180px;
+    height: 330px;
+  }
+  .textTitle {
+    font-size: 40px;
+  }
+  .textTitleOcupationName {
+    font-size: 21px;
+  }
+  .animatedText {
+    font-size: 12px;
+    text-align: left;
+  }
+  .contex {
+    max-width: 400px;
+  }
+  .technologiesContainer {
+    padding: 1rem;
   }
 }
