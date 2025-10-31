@@ -6,49 +6,56 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // 🔹 Detectar visibilidad en pantalla
+  // 🔹 Detectar visibilidad
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.5 } // visible al menos 50%
+      { threshold: 0.5 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // 🔹 Alternar imagen y video cada 10s solo si está visible
+  // 🔹 Controlar duración (20s imagen / 5s video)
   useEffect(() => {
-    if (!isVisible) {
-      setShowVideo(false); // si no está visible, muestra la imagen
-      return;
-    }
+    let timeoutId: NodeJS.Timeout;
 
-    const interval = setInterval(() => {
-      setShowVideo((prev) => !prev);
-    }, 10000);
+    const cycleMedia = () => {
+      if (!isVisible) {
+        setShowVideo(false);
+        return;
+      }
 
-    return () => clearInterval(interval);
+      // Mostrar imagen 20s
+      setShowVideo(false);
+      timeoutId = setTimeout(() => {
+        if (isVisible) {
+          setShowVideo(true);
+
+          // Mostrar video 5s
+          timeoutId = setTimeout(() => {
+            setShowVideo(false);
+            cycleMedia(); // reiniciar ciclo
+          }, 5000);
+        }
+      }, 20000);
+    };
+
+    cycleMedia();
+    return () => clearTimeout(timeoutId);
   }, [isVisible]);
 
   return (
-    <div ref={sectionRef} style={{ position: "relative" }}>
+    <div ref={sectionRef}>
       {showVideo ? (
         <video
           src="/videoProfile.mp4"
-          width="400"
-          height="500"
           autoPlay
           muted
           loop={false}
           playsInline
           onEnded={() => setShowVideo(false)}
-          style={{
-            borderRadius: "20px",
-            objectFit: "cover",
-            width: "400px",
-            height: "500px",
-          }}
         />
       ) : (
         <TiltedCard
@@ -56,8 +63,8 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
           altText="Foto de perfil"
           containerHeight="450px"
           containerWidth="400px"
-          imageHeight="450px"
-          imageWidth="400px"
+          imageHeight="400px"
+          imageWidth="350px"
           scaleOnHover={1.15}
           rotateAmplitude={14}
           showMobileWarning={false}
