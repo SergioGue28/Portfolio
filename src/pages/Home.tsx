@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Styles from "../styles/Home.module.css";
-import TiltedCard from "../components/animation/animationPhoto/TiltedCard";
+import ProfileMedia from "../components/ProfileMedia";
 import Particles from "../components/animation/animationBackground/Particles";
 import SplitText from "../components/animation/animationText/SplitText";
 import React from "react";
-import CardsSection  from "../components/animation/animationCard/CardsSection";
+import CardsSection from "../components/animation/animationCard/CardsSection";
 
 import {
   FaNodeJs,
@@ -79,26 +79,17 @@ const Home: React.FC = () => {
       </div>
       <div className={Styles.space}></div>
 
-      <section className={Styles.home}>
+      <section className={Styles.home} id="profile-section">
         <div className={Styles.photo}>
           {loading ? (
             <p className={Styles.contex}>Cargando imagen...</p>
           ) : (
-            <TiltedCard
+            <ProfileMedia
               imageSrc={
                 portfolio?.photo?.startsWith("http")
                   ? portfolio.photo
                   : "/img/3.jpg"
               }
-              altText="Foto de perfil"
-              containerHeight="400px"
-              containerWidth="350px"
-              imageHeight="400px"
-              imageWidth="350px"
-              scaleOnHover={1.15}
-              rotateAmplitude={14}
-              showMobileWarning={false}
-              showTooltip={false}
             />
           )}
         </div>

@@ -19,7 +19,7 @@ const ContactMe: React.FC = () => {
 
   return (
     <div className={styles.contactContainer}>
-      <h2 className={styles.title}>Contact me</h2>
+      <h2 className={styles.title}>Contactáme</h2>
       <div className={styles.contactInfo}>
         <p>
           <strong>Nombre:</strong> {contactInfo.fullName}
