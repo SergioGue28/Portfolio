@@ -7,18 +7,17 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // 🔹 Detectar visibilidad
+  // Detectar visibilidad
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.5 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // 🔹 Controlar duración (20s imagen / 5s video)
+  // Controlar ciclo (20s imagen / 5s video)
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
@@ -28,16 +27,16 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
         return;
       }
 
-      // Mostrar imagen 20s
+      // Imagen 20s
       setShowVideo(false);
       timeoutId = setTimeout(() => {
         if (isVisible) {
           setShowVideo(true);
 
-          // Mostrar video 5s
+          // Video 5s
           timeoutId = setTimeout(() => {
             setShowVideo(false);
-            cycleMedia(); // reiniciar ciclo
+            cycleMedia();
           }, 5000);
         }
       }, 20000);
@@ -56,11 +55,12 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
           muted
           loop={false}
           playsInline
+          preload="auto"
           onEnded={() => setShowVideo(false)}
           className={styles.profileVideo}
         />
       ) : (
-        
+        <div className={styles.profileImageWrapper}>
           <TiltedCard
             imageSrc={imageSrc}
             altText="Foto de perfil"
@@ -73,7 +73,7 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
             showMobileWarning={false}
             showTooltip={false}
           />
-        
+        </div>
       )}
     </div>
   );

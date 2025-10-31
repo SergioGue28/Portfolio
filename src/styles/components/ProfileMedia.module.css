@@ -5,16 +5,17 @@
   align-items: center;
 }
 
-/* Video */
+/* VIDEO */
 .profileVideo {
   border-radius: 20px;
   object-fit: cover;
   width: 350px;
   height: 500px;
   transition: all 0.3s ease;
+  display: block;
 }
 
-/* Imagen (wrapper del TiltedCard) */
+/* IMAGEN */
 .profileImageWrapper {
   width: 440px;
   height: 470px;
@@ -23,4 +24,34 @@
   transition: all 0.3s ease;
 }
 
+/* 🔹 TABLET (≤ 900px) */
+@media (max-width: 900px) {
+  .profileVideo {
+    width: 280px;
+    height: 380px;
+  }
 
+  .profileImageWrapper {
+    width: 320px;
+    height: 380px;
+  }
+}
+
+/* 🔹 MÓVIL (≤ 480px) */
+@media (max-width: 480px) {
+  .mediaContainer {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .profileVideo {
+    width: 230px;
+    height: 320px;
+    border-radius: 16px;
+  }
+
+  .profileImageWrapper {
+    width: 250px;
+    height: 300px;
+  }
+}
