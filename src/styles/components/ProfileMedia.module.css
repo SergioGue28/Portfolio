@@ -1,0 +1,26 @@
+.mediaContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video */
+.profileVideo {
+  border-radius: 20px;
+  object-fit: cover;
+  width: 350px;
+  height: 500px;
+  transition: all 0.3s ease;
+}
+
+/* Imagen (wrapper del TiltedCard) */
+.profileImageWrapper {
+  width: 440px;
+  height: 470px;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+

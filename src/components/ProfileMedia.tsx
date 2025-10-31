@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import TiltedCard from "./animation/animationPhoto/TiltedCard";
+import styles from "../styles/components/ProfileMedia.module.css";
 
 const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -47,7 +48,7 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
   }, [isVisible]);
 
   return (
-    <div ref={sectionRef}>
+    <div ref={sectionRef} className={styles.mediaContainer}>
       {showVideo ? (
         <video
           src="/videoProfile.mp4"
@@ -56,20 +57,23 @@ const ProfileMedia: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
           loop={false}
           playsInline
           onEnded={() => setShowVideo(false)}
+          className={styles.profileVideo}
         />
       ) : (
-        <TiltedCard
-          imageSrc={imageSrc}
-          altText="Foto de perfil"
-          containerHeight="450px"
-          containerWidth="400px"
-          imageHeight="400px"
-          imageWidth="350px"
-          scaleOnHover={1.15}
-          rotateAmplitude={14}
-          showMobileWarning={false}
-          showTooltip={false}
-        />
+        
+          <TiltedCard
+            imageSrc={imageSrc}
+            altText="Foto de perfil"
+            containerHeight="450px"
+            containerWidth="400px"
+            imageHeight="400px"
+            imageWidth="350px"
+            scaleOnHover={1.15}
+            rotateAmplitude={14}
+            showMobileWarning={false}
+            showTooltip={false}
+          />
+        
       )}
     </div>
   );
