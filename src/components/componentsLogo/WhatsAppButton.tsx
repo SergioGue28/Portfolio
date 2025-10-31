@@ -4,7 +4,7 @@ import styles from "../../styles/components/componentsLogo/WhatsAppButton.module
 const WhatsAppButton: React.FC = () => {
   return (
     <a
-      href="https://wa.me/573001234567" // 👉 cambia aquí por tu número de WhatsApp
+      href="https://wa.me/573219639578" 
       target="_blank"
       rel="noopener noreferrer"
     >

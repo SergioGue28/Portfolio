@@ -1,7 +1,9 @@
 .header {
   position: fixed;
-  inset: 0; /* reemplaza top/right/bottom/left */
+  inset: 0;
+  /*reemplazatop/right/bottom/left*/
   height: 90px;
+  /* ✨ CAMBIO: Fondo sólido restaurado ✨ */
   background-color: #031a29;
   display: flex;
   justify-content: center;
@@ -10,10 +12,22 @@
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+  /* La sombra no será tan necesaria ahora, pero se puede dejar */
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;
   box-sizing: border-box;
-
   margin: 7.7px;
+  -webkit-transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  -moz-transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  -ms-transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  -o-transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .containerHeader {
@@ -77,6 +91,11 @@
   box-shadow: inset 0px -3px 0px 0px #66e55b;
 }
 
+/* Estilo para el botón Admin (opcionalmente puedes darle un estilo diferente) */
+.adminButton {
+  font-weight: bold;
+}
+
 .containerSocial {
   justify-content: flex-start;
 }
@@ -115,11 +134,95 @@
   transform: scale(1.05);
 }
 
+/* --- Nuevos Estilos para el Modal de Pantalla Completa --- */
+.fullScreenModal {
+  position: absolute; /* Posición absoluta dentro del header fijo */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+  height: 100vh; /* Ocupa todo el alto de la ventana */
+  background-color: rgba(3, 26, 41, 0.95); /* Fondo oscuro semi-transparente */
+  z-index: 101; /* Sobre el header y cualquier otro contenido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* Para posicionar el botón de cerrar */
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 102;
+}
+
+.modalHeaderContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%; /* Para centrar los botones */
+  max-width: 300px;
+  margin-top: 50px;
+}
+
+.modalButtonWrapper {
+  width: 100%;
+}
+
+.modalButton {
+  width: 100%;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 15px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modalButton:hover {
+  background-color: #66e55b;
+  color: #031a29;
+}
+
+.modalSocialContent {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
 /* Responsive */
 
 @media (width < 800px) {
+  /* CAMBIO: En móvil/tablet, el menú de navegación principal y el botón "Admin" se ocultan */
   .containerSearch {
     display: none;
+  }
+
+  /* Mostrar solo el botón de Admin si está autenticado */
+  .containerSearch .adminButton {
+    display: none; /* Se gestiona en el modal */
+  }
+
+  /* El icono de menú es ahora el que abre el modal de pantalla completa */
+  .containerProfile .profilePicture {
+    display: block; /* Aseguramos que se muestre en < 800px */
   }
 
   .contentHeader {
@@ -132,7 +235,20 @@
   }
 }
 
+@media (width >= 800px) {
+  /* En escritorio, el icono de menú de la hamburguesa debe ocultarse */
+  .containerProfile .profilePicture {
+    display: none;
+  }
+
+  /* En escritorio, el botón de Admin debe mostrarse en containerSearch si está autenticado */
+  .containerSearch {
+    display: flex; /* Asegura que el contenedor se muestre */
+  }
+}
+
 @media (width < 420px) {
+  /* ... (Resto de estilos responsive sin cambios significativos en la lógica) */
   .containerSearch {
     display: none;
   }
@@ -153,5 +269,4 @@
   .btnProfile {
     font-size: 0.75rem;
   }
-
 }

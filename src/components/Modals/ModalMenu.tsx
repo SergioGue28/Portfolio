@@ -19,15 +19,15 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
       <ul className={styles.menuList}>
         <li className={styles.menuItem} onClick={onEditUser}>
           <FaUserEdit className={styles.icon} />
-          Edit User
+          Editar Usuario
         </li>
         <li className={styles.menuItem} onClick={onChangePassword}>
           <FaLock className={styles.icon} />
-          Change Password
+          Cambiar contraseña
         </li>
         <li className={styles.menuItem} onClick={onLogout}>
           <FaSignOutAlt className={styles.icon} />
-          Log Out
+          Cerrar sección
         </li>
       </ul>
     </div>
