@@ -100,7 +100,7 @@ const Certificate: React.FC = () => {
 };
 
 
-  const ITEMS_PER_PAGE = 6;
+  const ITEMS_PER_PAGE = 8;
   const totalPages = Math.ceil(certificates.length / ITEMS_PER_PAGE);
   const displayedCertificates = certificates.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
